@@ -25,25 +25,17 @@ class TutorialThreeViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        styleEvolve()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
     }
     
     @IBAction func nextAction(_ sender: AnyObject) {
         let tutorialFour = TutorialFourViewController()
         self.navigationController?.pushViewController(tutorialFour, animated: true)
 
-    }
-}
-
-extension TutorialThreeViewController {
-    fileprivate func styleEvolve() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.backgroundColor = UIColor.clear
-            titleLabel.textColor = UIColor.white
-            detailLabel.backgroundColor = UIColor.clear
-            detailLabel.textColor = UIColor.white
-            nextStepButton.setTitleColor(UIColor.getBaseColor(), for: .normal)
-        }
     }
 }

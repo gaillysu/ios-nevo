@@ -9,7 +9,7 @@
 import UIKit
 
 class SetingInfoCell: UITableViewCell {
-
+    
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var userName: UILabel!
     
@@ -17,36 +17,23 @@ class SetingInfoCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        viewDefaultColorful()
+        emailLabel.viewDefaultColorful()
+        userName.viewDefaultColorful()
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
+        avatarImageView.layer.masksToBounds = true
+        avatarImageView.layer.borderWidth = 1
+        avatarImageView.layer.borderColor = UIColor.lightGray.cgColor
+        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        avatarImageView.layer.cornerRadius = 0.5 * avatarImageView.layer.frame.width
-        avatarImageView.layer.masksToBounds = true
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            emailLabel.textColor = UIColor.white
-            userName.textColor = UIColor.white
-        }
-    }
-}
-
-
-// MARK: - Style Evolve
-extension SetingInfoCell {
-    fileprivate func styleEvolve() {
-        // if lunar
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            contentView.backgroundColor = UIColor.getGreyColor()
-            emailLabel.textColor = UIColor.white
-            userName.textColor = UIColor.white
+        if MEDUserProfile.getAll().count > 0 {
+            if let _ = AppTheme.LoadKeyedArchiverName(NevoAllKeys.MEDAvatarKeyAfterSave()) {
+                avatarImageView.layer.cornerRadius = 0.5 * avatarImageView.layer.frame.width
+                avatarImageView.layer.masksToBounds = true
+            }
         }
     }
 }

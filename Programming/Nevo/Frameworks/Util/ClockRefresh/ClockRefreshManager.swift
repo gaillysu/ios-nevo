@@ -14,14 +14,9 @@ class ClockRefreshManager: NSObject {
     /**
      A classic singelton pattern
      */
-    class var sharedInstance : ClockRefreshManager {
-        struct Singleton {
-            static let instance = ClockRefreshManager()
-        }
-        return Singleton.instance
-    }
+    static let instance = ClockRefreshManager()
     
-    override init() {
+    fileprivate override init() {
         super.init()
         /**
         *  Ten seconds to refresh the clock and read the data
@@ -34,6 +29,20 @@ class ClockRefreshManager: NSObject {
             delegate.clockRefreshAction()
         }
     }
+    
+    func everyRefresh(_ block: @escaping () -> Void) {
+        if #available(iOS 10.0, *) {
+            let timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { (timer) in
+                block()
+            }
+            RunLoop.current.add(timer, forMode: RunLoopMode.commonModes)
+        } else {
+            let timer = Timer.every(15.seconds, {
+                block()
+            })
+            RunLoop.current.add(timer, forMode: RunLoopMode.commonModes)
+        }
+    }
 
     /**
     Set clock the refresh objects
@@ -43,6 +52,10 @@ class ClockRefreshManager: NSObject {
     func setRefreshDelegate(_ delegate:ClockRefreshDelegate){
         for objectDelegate in refreshObject {
             if objectDelegate is StepsHistoryViewController {
+                return
+            }
+            
+            if objectDelegate is StepGoalSetingController {
                 return
             }
         }

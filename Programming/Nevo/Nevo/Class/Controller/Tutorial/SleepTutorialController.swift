@@ -36,36 +36,13 @@ class SleepTutorialController: UIViewController {
     }
     
     @IBAction func buttonManager(_ sender: AnyObject) {
-//        let nav:MorningTutorialController = MorningTutorialController()
-//        self.presentViewController(nav, animated: true) { () -> Void in
-//
-//        }
         self.dismiss(animated: true) { () -> Void in
-            
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension SleepTutorialController {
     fileprivate func styleEvolve() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.backgroundColor = UIColor.clear
-            titleLabel.textColor = UIColor.white
-            detailLabel.backgroundColor = UIColor.clear
-            detailLabel.textColor = UIColor.white
-            nextStepButton.setTitleColor(UIColor.getBaseColor(), for: .normal)
-        }
+        
     }
 }

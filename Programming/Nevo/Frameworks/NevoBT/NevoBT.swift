@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 /*
 NevoBT should do one thing : control the Core Bluetooth classes.
@@ -60,23 +61,13 @@ protocol NevoBT {
     */
     func isBluetoothEnabled() -> Bool
     
-    /**
-    get Nevo 's ble firmware version
-    */
-    func  getFirmwareVersion() -> NSString!
-    
-    /**
-    get Nevo 's MCU software version
-    */
-    func  getSoftwareVersion() -> NSString!
-
-    /**
-    Get the current connection device of RSSI values
-    */
-    func getRSSI()
-    
     //Based on the specified UUID returns whether the device is matched
     func isPairingPeripheral(_ peripheralAddress : UUID) -> Bool
+    
+    func getBLECentralManager() -> CBCentralManager?
+    
+    //The connection stopped after scanning
+    func stopScan()
 }
 
 protocol NevoBTDelegate {
@@ -92,14 +83,14 @@ protocol NevoBTDelegate {
     /**
     Called when a peripheral connects or disconnects
     */
-    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!)
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool)
     
     /**
     Call when finish reading Firmware
     @parameter whichfirmware, firmware type
     @parameter version, return the version
     */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int)
 
     /**
     *  Receiving the current device signal strength value

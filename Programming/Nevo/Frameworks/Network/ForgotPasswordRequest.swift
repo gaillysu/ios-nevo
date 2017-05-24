@@ -22,7 +22,7 @@ class ForgotPasswordRequest: NSObject {
                 let token:String = json["user"].dictionaryValue["password_token"]!.stringValue
                 let email:String = json["user"].dictionaryValue["email"]!.stringValue
                 let id:Int = json["user"].dictionaryValue["id"]!.intValue
-                let alert:UIAlertController = UIAlertController(title: "Change Password", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let alert:ActionSheetView = ActionSheetView(title: "Change Password", message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 alert.addTextField(configurationHandler: { (newPassword1:UITextField) in
                     newPassword1.placeholder = "News Password"
                     newPassword1.isSecureTextEntry = true

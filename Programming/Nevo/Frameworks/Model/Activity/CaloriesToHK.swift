@@ -8,7 +8,7 @@
 
 import UIKit
 import HealthKit
-import Timepiece
+ 
 
 class CaloriesToHK: NevoHKDataPoint {
     

@@ -10,15 +10,20 @@ import UIKit
 import Charts
 import SwiftEventBus
 import XCGLogger
+import RealmSwift
+ 
 
 class SolarIndicatorController: PublicClassController {
 
     @IBOutlet weak var textCollection: UICollectionView!
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var titleLabel: UILabel!
-
+    
+    fileprivate let realm:Realm = try! Realm()
+    
     fileprivate var onTitle:[String] = [NSLocalizedString("timer_on_battery", comment: ""),NSLocalizedString("timer_on_solar", comment: "")]
-    fileprivate var onValue:[Double] = [130,00]
+    fileprivate var onValue:[Double] = [00,00]
+    fileprivate var selectedDate:Date = Date()
     
     init() {
         super.init(nibName: "SolarIndicatorController", bundle: Bundle.main)
@@ -32,117 +37,109 @@ class SolarIndicatorController: PublicClassController {
         super.viewDidLoad()
         
         textCollection.register(UINib(nibName: "SolarInforViewCell",bundle: nil), forCellWithReuseIdentifier: "SolarInfor_Identifier")
+        textCollection.register(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader", withReuseIdentifier: "viewForSupplementaryReuseID")
         
         self.setupPieChartView(pieChartView)
         pieChartView.legend.enabled = false;
         pieChartView.delegate = self
-        self.updateChartData()
-        pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
         
-        //Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(pvadcAction(_:)), userInfo: nil, repeats: true)
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 0, height: 0)
         
-        //EVENT_BUS_RAWPACKET_DATA_KEY
-        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_RAWPACKET_DATA_KEY) { (notification) in
-            if AppTheme.isTargetLunaR_OR_Nevo() {
-                let packet = notification.object as! NevoPacket
-                //Do nothing
-                if packet.getHeader() == PVADCRequest.HEADER(){
-                    var pvadcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[4])
-                    pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
-                    
-                    var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
-                    batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
-                    //self.valueLabel.text = "Amount of ADC:\(pvadcValue)"
-                    XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
-                }
-            }else{
-                let packet = notification.object as! LunaRPacket
-                //Do nothing
-                if packet.getHeader() == PVADCRequest.HEADER(){
-                    var pvadcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[4])
-                    pvadcValue =  pvadcValue + Int(NSData2Bytes(packet.getPackets()[0])[5] )<<8
-                    var batteryAdcValue:Int = Int(NSData2Bytes(packet.getPackets()[0])[2])
-                    batteryAdcValue =  batteryAdcValue + Int(NSData2Bytes(packet.getPackets()[0])[3] )<<8
-                    //self.valueLabel.text = "Amount of ADC:\(pvadcValue)"
-                    XCGLogger.default.debug("pvadc packet............\(pvadcValue)")
-                }
-            }
-            
-        }
-    }
-    
-    func pvadcAction(_ timer:Timer) {
-        AppDelegate.getAppDelegate().sendRequest(PVADCRequest())
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        layout.headerReferenceSize = CGSize.init(width: 0, height: 0)
+        textCollection.collectionViewLayout = layout
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            textCollection.backgroundColor = UIColor.getGreyColor()
-            pieChartView.backgroundColor = UIColor.getGreyColor()
-            self.view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.textColor = UIColor.white
-        }else{
-            textCollection.backgroundColor = UIColor.white
-            pieChartView.backgroundColor = UIColor.white
+        
+        textCollection.backgroundColor = UIColor.white
+        pieChartView.backgroundColor = UIColor.white
+        
+        _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY) { (notification) in
+            self.selectedDate = Date()
+            self.updateChartData(date:Date())
+        }
+        
+        _ = SwiftEventBus.onMainThread(self, name: SELECTED_CALENDAR_NOTIFICATION) { (notification) in
+            let userinfo:Date = notification.userInfo!["selectedDate"] as! Date
+            self.selectedDate = userinfo
+            self.updateChartData(date:userinfo)
         }
         
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        SwiftEventBus.unregister(self, name: EVENT_BUS_END_BIG_SYNCACTIVITY)
+        SwiftEventBus.unregister(self, name: SELECTED_CALENDAR_NOTIFICATION)
+        SwiftEventBus.unregister(self, name: EVENT_BUS_RAWPACKET_DATA_KEY)
+    }
     override func viewDidAppear(_ animated: Bool) {
+        self.updateChartData(date:Date())
         pieChartView.animate(xAxisDuration: 1.4, easingOption: ChartEasingOption.easeOutBack)
         textCollection.reloadData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let layout:UICollectionViewFlowLayout = textCollection.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: textCollection.frame.width/2.0, height: textCollection.frame.size.height / 2)
     }
 
 }
 
-extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        return CGSize(width: UIScreen.main.bounds.size.width, height: collectionView.frame.size.height/2 - 10)
+extension SolarIndicatorController{
+
+    func getSolarData(date:Date)->[SolarHarvest] {
+        
+        let solar = realm.objects(SolarHarvest.self).filter("date = \(date.beginningOfDay.timeIntervalSince1970)")
+        var solarData:[SolarHarvest] = []
+        for value in solar {
+            solarData.append(value as SolarHarvest)
+        }
+        return solarData
     }
-    
-    // MARK: - UICollectionViewDataSource
+}
+
+// MARK: - UICollectionViewDataSource
+extension SolarIndicatorController:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return onTitle.count
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SolarInfor_Identifier", for: indexPath)
         cell.backgroundColor = UIColor.white
         (cell as! SolarInforViewCell).updateTitleLabel(onTitle[(indexPath as NSIndexPath).row])
-        if indexPath.row == 0 {
-            (cell as! SolarInforViewCell).valueLabel.text = String(format: "%dh %dmin", Date().hour,Date().minute)
-        }
+        (cell as! SolarInforViewCell).valueLabel.text = AppTheme.timerFormatValue(value: onValue[indexPath.row])
         
-        if indexPath.row == 1 {
-            (cell as! SolarInforViewCell).valueLabel.text = String(format: "0h 0min")
-        }
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            (cell as! SolarInforViewCell).valueLabel.textColor = UIColor.getBaseColor()
-            (cell as! SolarInforViewCell).titleLabel.textColor = UIColor.white
-            cell.backgroundColor = UIColor.getGreyColor()
-        }
         return cell
     }
 }
 
 // MARK: - ChartViewDelegate
 extension SolarIndicatorController:ChartViewDelegate {
-    func updateChartData() {
+    func updateChartData(date:Date) {
         pieChartView.data = nil
-        self.setDataCount(2, range: 100)
+        var solarValue = self.getSolarData(date:date)
+        if solarValue.count>0 {
+            self.setDataCount(solarValue)
+        }else{
+            let solar:SolarHarvest = SolarHarvest()
+            solar.date = Date().beginningOfDay.timeIntervalSince1970
+            solar.solarTotalTime = 0
+            solar.solarHourlyTime = "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+            solarValue.append(solar)
+            self.setDataCount(solarValue)
+        }
     }
 
     func setupPieChartView(_ chartView:PieChartView) {
-        
+        chartView.descriptionTextColor = UIColor.white
         chartView.usePercentValuesEnabled = true
         chartView.drawSlicesUnderHoleEnabled = false
         chartView.holeRadiusPercent = 0.0
@@ -168,56 +165,63 @@ extension SolarIndicatorController:ChartViewDelegate {
         chartView.rotationEnabled = true;
         chartView.highlightPerTapEnabled = true;
         
-        let l:ChartLegend = chartView.legend;
-        l.position = ChartLegend.Position.rightOfChart;
+        let l:Legend = chartView.legend;
+        l.position = Legend.Position.rightOfChart;
         l.xEntrySpace = 7.0;
         l.yEntrySpace = 0.0;
         l.yOffset = 0.0;
         
     }
     
-    func setDataCount(_ count:Int,range:Double) {
-        let mult:Double = range
+    func setDataCount(_ solarValue:[SolarHarvest]) {
         var yVals1:[ChartDataEntry] = []
-        for i:Int in 0..<count {
-            let value:Double = Double(arc4random_uniform(UInt32(mult) + UInt32(mult/5)))
-            yVals1.append(BarChartDataEntry(value: value , xIndex: i))
+        
+        let solarData:SolarHarvest = solarValue[0]
+        let value:Double = Double(solarData.solarTotalTime)/60.0
+        
+        /*
+         Time On Battery = Time Of Today (18:00 -> 1080min) - TotalHarvestingTime (200) = 880 -> 14 hours and 40 minutes
+         Time On Solar = Total Harvesting Time (200) -> 3 hours and 20
+         */
+        let mDay:Date = Date()
+        var todayDate:Double = 0.0
+        if selectedDate.day == mDay.day {
+            todayDate = Double(mDay.hour)+Double(mDay.minute)/60.0
+        }else{
+            todayDate = 24.0
         }
+        
+        yVals1.append(BarChartDataEntry(x: 0, y: value))
+        yVals1.append(BarChartDataEntry(x: 1, y: todayDate-value))
+        
+        onValue.replaceSubrange(0..<1, with: [todayDate-value])
+        onValue.replaceSubrange(1..<2, with: [value])
+        textCollection.reloadData();
         
         var xVals:[String] = []
-        
         xVals.append(NSLocalizedString("Solar", comment: ""))
         xVals.append(NSLocalizedString("Battery", comment: ""))
-        let dataSet:PieChartDataSet = PieChartDataSet(yVals: yVals1, label: "")
+        
+        let dataSet:PieChartDataSet = PieChartDataSet(values: yVals1, label: "")
         dataSet.sliceSpace = 2.0;
-        var colors:[UIColor] = [];
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            //B37EBD
-            colors.append(UIColor.getBaseColor())
-            colors.append(UIColor.getTintColor())
-        }else{
-            colors.append(AppTheme.NEVO_SOLAR_YELLOW())
-            colors.append(AppTheme.NEVO_SOLAR_DARK_GRAY())
-        }
+        var colors:[UIColor] = [AppTheme.NEVO_SOLAR_YELLOW(),AppTheme.NEVO_SOLAR_DARK_GRAY()];
         dataSet.colors = colors
         
-        let data:PieChartData = PieChartData(xVals: xVals, dataSets: [dataSet])
-        //data.highlightEnabled = false
         let pFormatter:NumberFormatter = NumberFormatter()
         pFormatter.numberStyle = NumberFormatter.Style.percent;
         pFormatter.maximumFractionDigits = 1;
         pFormatter.multiplier = 1.0;
         pFormatter.percentSymbol = " %";
         
-        
-        data.setValueFormatter(pFormatter)
+        let data:PieChartData = PieChartData(dataSets: [dataSet])
+        data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 16.0))
         data.setValueTextColor(UIColor.white)
         pieChartView.data = data;
         pieChartView.highlightValues(nil)
     }
 
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
     
     }
 }

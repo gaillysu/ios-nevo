@@ -13,8 +13,10 @@ import SwiftyTimer
 import SwiftyJSON
 import XCGLogger
 
-class InformationController: UIViewController,SMSegmentViewDelegate {
+class InformationController: UIViewController {
 
+    static let MED_kISFromRegisterController: String = "MED_kISFromRegisterController"
+    
     @IBOutlet weak var metricsSegment: UIView!
     @IBOutlet weak var dateOfbirth: AutocompleteField!
     @IBOutlet weak var heightTextField: AutocompleteField!
@@ -27,7 +29,7 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     @IBOutlet weak var policyLabel: UILabel!
     
     var segmentView:SMSegmentView?
-    var registerInfor:[String:String] = [:]
+    var registerInfo:[String:String] = [:]
     
     init() {
         super.init(nibName: "InformationController", bundle: Bundle.main)
@@ -39,7 +41,8 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("Register", comment: "")
+        self.navigationItem.title = NSLocalizedString("sign_up", comment: "")
+        
         
         let leftButton:UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightAction(_:)))
         self.navigationItem.rightBarButtonItem = leftButton
@@ -61,57 +64,34 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
         weightPickerView.dataSource = self
         weightPickerView.delegate = self
         weightTextfield.inputView = weightPickerView
-        
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.backgroundColor = UIColor.clear
-            titleLabel.textColor = UIColor.white
-            detailLabel.backgroundColor = UIColor.clear
-            detailLabel.textColor = UIColor.white
-            detailLabel2.backgroundColor = UIColor.clear
-            detailLabel2.textColor = UIColor.white
-            
-            policyLabel.backgroundColor = UIColor.clear
-            policyLabel.textColor = UIColor.getBaseColor()
-            
-            dateOfbirth.backgroundColor = UIColor.getLightBaseColor()
-            dateOfbirth.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
-            dateOfbirth.textColor = UIColor.white
-            heightTextField.backgroundColor = UIColor.getLightBaseColor()
-            heightTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
-            heightTextField.textColor = UIColor.white
-            weightTextfield.backgroundColor = UIColor.getLightBaseColor()
-            weightTextfield.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
-            weightTextfield.textColor = UIColor.white
-        }
     }
     
     override func viewDidLayoutSubviews() {
         //super.viewDidLayoutSubviews()
-        let segmentProperties = ["OnSelectionBackgroundColour": AppTheme.NEVO_SOLAR_YELLOW(),"OffSelectionBackgroundColour": UIColor.white,"OnSelectionTextColour": UIColor.white,"OffSelectionTextColour": AppTheme.NEVO_SOLAR_YELLOW()]
         if segmentView == nil {
+            let appearance = SMSegmentAppearance()
+            appearance.titleOnSelectionColour       = UIColor.white
+            appearance.titleOffSelectionColour      = UIColor.getBaseColor()
+            appearance.segmentOnSelectionColour     = UIColor.getBaseColor()
+            appearance.segmentOffSelectionColour    = UIColor.getGreyColor()
+            appearance.titleOnSelectionFont         = UIFont.systemFont(ofSize: 12.0)
+            appearance.titleOffSelectionFont        = UIFont.systemFont(ofSize: 12.0)
+            appearance.contentVerticalMargin        = 10.0
+            
+            /*
+             Init SMsegmentView
+             Set divider colour and width here if there is a need
+             */
             let segmentFrame = CGRect(x: 0, y: 0, width: metricsSegment.frame.size.width, height: metricsSegment.frame.size.height)
-            segmentView = SMSegmentView(frame: segmentFrame, separatorColour: UIColor(white: 0.95, alpha: 0.3), separatorWidth: 1.0, segmentProperties: segmentProperties)
-            segmentView!.delegate = self
-            segmentView!.layer.borderColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
-            segmentView!.layer.borderWidth = 1.0
+            segmentView = SMSegmentView(frame: segmentFrame, dividerColour: UIColor(white: 0.95, alpha: 0.3), dividerWidth: 1.0, segmentAppearance: appearance)
+            segmentView!.layer.borderColor  = AppTheme.NEVO_SOLAR_YELLOW().cgColor
+            segmentView!.layer.borderWidth  = 1.0
             segmentView?.layer.cornerRadius = 10
             
             segmentView!.addSegmentWithTitle(NSLocalizedString("Male", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
             segmentView!.addSegmentWithTitle(NSLocalizedString("Female", comment: ""), onSelectionImage: nil, offSelectionImage: nil)
-            segmentView?.selectSegmentAtIndex(0)
+            segmentView?.selectedSegmentIndex = 0
             metricsSegment.addSubview(segmentView!)
-            
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                segmentView?.layer.borderColor = UIColor.getBaseColor().cgColor
-                
-                segmentView?.segmentOnSelectionColour = UIColor.getBaseColor()
-                segmentView?.segmentOffSelectionColour = UIColor.getGreyColor()
-                segmentView?.segmentOnSelectionTextColour = UIColor.white
-                segmentView?.segmentOffSelectionTextColour = UIColor.getBaseColor()
-
-            }
         }
         
     }
@@ -119,11 +99,6 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-    }
-    
-    // MARK: - SMSegmentViewDelegate
-    func segmentView(_ segmentView: SMBasicSegmentView, didSelectSegmentAtIndex index: Int) {
-        debugPrint("Select segment at index: \(index)")
     }
     
     override func didReceiveMemoryWarning() {
@@ -167,79 +142,50 @@ class InformationController: UIViewController,SMSegmentViewDelegate {
                 return
             }
             
-            let sex:Int = self.segmentView?.indexOfSelectedSegment == 0 ? 1 : 0
-            registerInfor["birthday"] = dateOfbirth!.text!
+            let sex:Int = self.segmentView?.selectedSegmentIndex == 0 ? 1 : 0
+            registerInfo["birthday"] = dateOfbirth!.text!
             
             // 字典中的数据格式原来是没有单位的数字
-            registerInfor["length"] = "\(heightTextField!.text!.toInt())"
-            registerInfor["weight"] = "\(weightTextfield!.text!.toInt())"
+            registerInfo["length"] = "\(heightTextField!.text!.toInt())"
+            registerInfo["weight"] = "\(weightTextfield!.text!.toInt())"
             
-            registerInfor["sex"] = "\(sex)"
+            registerInfo["sex"] = "\(sex)"
             
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: NSLocalizedString("please_wait", comment: ""), mode: MRProgressOverlayViewMode.indeterminate, animated: true)
             view?.setTintColor(AppTheme.NEVO_SOLAR_YELLOW())
-            
-            if !AppTheme.isTargetLunaR_OR_Nevo() {
-                view?.setTintColor(UIColor.getBaseColor())
-            }
             
             //timeout
             let timeout:Timer = Timer.after(50.seconds, {
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
             })
             
-            HttpPostRequest.postRequest("user/create", data: ["user":registerInfor as AnyObject]) { (result) in
+//            // let infoDict:[String:String] = ["email":email!.text!,"first_name":firstNameTextField!.text!,"last_name":lastNameTextField!.text!,"password":password.text!]
+            MEDUserNetworkManager.createUser(firstName: registerInfo["first_name"]!, lastName: registerInfo["last_name"]!, email: registerInfo["email"]!, password: registerInfo["password"]!, birthday: registerInfo["birthday"]!, length: registerInfo["length"]!, weight: registerInfo["weight"]!, sex: sex, completion: { (status) in
                 
                 timeout.invalidate()
-                
                 MRProgressOverlayView.dismissAllOverlays(for: self.navigationController!.view, animated: true)
                 
-                let json = JSON(result)
-                var message = json["message"].stringValue
-                let status = json["status"].intValue
-                let user:[String : JSON] = json["user"].dictionaryValue
-                
+                var message: String = ""
                 switch status {
-                case -1:
-                    message = NSLocalizedString("access_denied", comment: "");
-                case -2:
-                    message = "";
-                case -3:
-                    message = NSLocalizedString("user_exist", comment: "");
-                default:
+                case .SUCCESS:
+                    message = NSLocalizedString("register_success", comment: "")
+                    // 如果要加密，可以把加密后的密码存在 userDefault 里
+                    // please don't care about the security. if necessary, we can encrypt the password before save
+                    UserDefaults.standard.set(["email" : "\(self.registerInfo["email"]!)", "password" : "\(self.registerInfo["password"]!)"], forKey: InformationController.MED_kISFromRegisterController)
+                    self.dismiss(animated: true, completion: nil)
+                case .USER_EXIST:
+                    message = NSLocalizedString("user_exist", comment: "")
+                case .SIGNUP_FAILED:
                     message = NSLocalizedString("signup_failed", comment: "")
-                }
-                
-                if(user.count>0) {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "y-M-d h:m:s.000000"
-                    let birthdayJSON = user["birthday"]
-                    let birthdayBeforeParsed = birthdayJSON!["date"].stringValue
-                    
-                    let birthdayDate = dateFormatter.date(from: birthdayBeforeParsed)
-                    dateFormatter.dateFormat = "y-M-d"
-                    let birthday = dateFormatter.string(from: birthdayDate!)
-                    let sex = user["sex"]!.intValue == 1 ? true : false;
-                    if(status > 0 && UserProfile.getAll().count == 0) {
-                        message = NSLocalizedString("register_success", comment: "");
-                        let userprofile:UserProfile = UserProfile(keyDict: ["id":user["id"]!.intValue,"first_name":user["first_name"]!.stringValue,"last_name":user["last_name"]!.stringValue,"length":user["length"]!.intValue,"email":user["email"]!.stringValue,"sex": sex, "weight":(user["weight"]?.floatValue)!, "birthday":birthday])
-                        userprofile.add({ (id, completion) in
-                        })
-                        self.dismiss(animated: true, completion: nil)
-                        //self.navigationController?.popViewControllerAnimated(true)
-                    }
-                    
-                }else{
-                    if message.isEmpty {
-                        message = NSLocalizedString("no_network", comment: "")
-                    }
-                    
                 }
                 
                 let banner = MEDBanner(title: NSLocalizedString(message, comment: ""), subtitle: nil, image: nil, backgroundColor:AppTheme.NEVO_SOLAR_YELLOW())
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.2)
-            }
+            })
+            
+            
+            /// 🚧🚧🚧
         }else{
             XCGLogger.default.debug("注册的时候没有网络")
             let view = MRProgressOverlayView.showOverlayAdded(to: self.navigationController!.view, title: "No internet", mode: MRProgressOverlayViewMode.cross, animated: true)

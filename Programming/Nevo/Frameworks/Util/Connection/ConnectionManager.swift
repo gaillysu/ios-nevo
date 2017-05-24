@@ -25,7 +25,7 @@ class ConnectionManager: NSObject {
         }
         enum connectionLocalMsgType:String {
             case connected = "Connected"
-            case disconnected = "Disconnect"
+            case disconnected = "Disconnected"
             case all = "All"
         }
         static let isShowBeforeMsg = false

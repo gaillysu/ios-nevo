@@ -2,14 +2,13 @@
 //  AppDelegate.swift
 //  Nevo
 //
-//  Created by Hugo Garcia-Cotte on 20/1/15.
+//  Created by Karl on 20/1/15.
 //  Copyright (c) 2015 Nevo. All rights reserved.
 //
 
 import UIKit
 import CoreData
 import HealthKit
-import FMDB
 import Alamofire
 import BRYXBanner
 import Fabric
@@ -22,11 +21,8 @@ import XCGLogger
 import SwiftyTimer
 import CoreLocation
 import Solar
-import Timepiece
+import RealmSwift
 
-let nevoDBDFileURL:String = "nevoDBName";
-let nevoDBNames:String = "nevo.sqlite";
-let umengAppKey:String = "56cd052d67e58ed65f002a2f"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelegate,UIAlertViewDelegate {
@@ -43,18 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     fileprivate var currentDay:UInt8 = 0
     fileprivate var mAlertUpdateFW = false
 
-    fileprivate var disConnectAlert:UIAlertView?
-    fileprivate let alertUpdateTag:Int = 9000
-    
-    fileprivate var watchID:Int = 1
-    fileprivate var watchName:String = "Nevo"
-    fileprivate var watchModelNumber:Int = 1
-    fileprivate var watchModel:String = "Paris"
     fileprivate var isSync:Bool = true; // syc state
     fileprivate var getWacthNameTimer:Timer?
-    
-    fileprivate var longitude:Double = 0
-    fileprivate var latitude:Double = 0
     
     var isFirsttimeLaunch: Bool {
         get {
@@ -64,9 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 
-    let dbQueue:FMDatabaseQueue = FMDatabaseQueue(path: AppDelegate.dbPath())
-    let network = NetworkReachabilityManager(host: "drone.karljohnchow.com")
-
+    let network = NetworkReachabilityManager(host: "nevowatch.com")
     class func getAppDelegate()->AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
@@ -82,101 +66,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         
+        updateDataBase()
+        
         IQKeyboardManager.sharedManager().enable = true
         
         //Start the logo for the first time
         if(!UserDefaults.standard.bool(forKey: "LaunchedDatabase")){
             UserDefaults.standard.set(true, forKey: "LaunchedDatabase")
             UserDefaults.standard.set(true, forKey: "firstDatabase")
-            /**
-            *  Initialize the database
-            */
-            Presets.defaultPresetsGoal()
-            UserAlarm.defaultAlarm()
-            UserNotification.defaultNotificationColor()
             //search not watch = -1
             self.setWatchInfo(-1, model: -1)
         }else{
             UserDefaults.standard.set(false, forKey: "firstDatabase")
         }
 
+        MEDUserGoal.defaultUserGoal()
+        MEDUserNotification.defaultNotificationColor()
+        MEDUserAlarm.defaultAlarm()
+        
         /**
         Initialize the BLE Manager
         */
-        mConnectionController = ConnectionControllerImpl()
-        mConnectionController?.setDelegate(self)
+        self.setUpBTManager()
         let userDefaults = UserDefaults.standard;
         //lastSync = userDefaults.double(forKey: LAST_SYNC_DATE_KEY)
-        
+        if userDefaults.getDurationSearch() == 0 {
+            userDefaults.setDurationSearch(version: 15)
+        }
         adjustLaunchLogic()
-        
-        //cancel all notifications  PM-13:00, PM 19:00
-        LocalNotification.sharedInstance().cancelNotification([NevoAllKeys.LocalStartSportKey(),NevoAllKeys.LocalEndSportKey()])
-
-        //Rate our app Pop-up
-        iRate.sharedInstance().messageTitle = NSLocalizedString("Rate Nevo", comment: "")
-        iRate.sharedInstance().message = NSLocalizedString("If you like Nevo, please take the time, etc", comment:"");
-        iRate.sharedInstance().cancelButtonLabel = NSLocalizedString("No, Thanks", comment:"");
-        iRate.sharedInstance().remindButtonLabel = NSLocalizedString("Remind Me Later", comment:"");
-        iRate.sharedInstance().rateButtonLabel = NSLocalizedString("Rate It Now", comment:"");
-        iRate.sharedInstance().applicationBundleID = "com.nevowatch.Nevo"
-        iRate.sharedInstance().onlyPromptIfLatestVersion = true
-        iRate.sharedInstance().usesPerWeekForPrompt = 1
-        iRate.sharedInstance().previewMode = true
-        iRate.sharedInstance().promptAtLaunch = false
         
         return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        UIApplication.shared.beginBackgroundTask (expirationHandler: { () -> Void in })
-        
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
-    }
-
-    func application(_ application: UIApplication , didReceive notification: UILocalNotification ) {
-        if (disConnectAlert == nil) {
-            disConnectAlert = UIAlertView(title: NSLocalizedString("BLE_LOST_TITLE", comment: ""), message: NSLocalizedString("BLE_CONNECTION_LOST", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("Ok", comment: ""))
-            disConnectAlert?.show()
-        }
-    }
-
-    // MARK: -dbPath
-    class func dbPath()->String{
-        var docsdir:String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
-        let filemanage:FileManager = FileManager.default
-        //nevoDBDFileURL
-        docsdir = docsdir.appendingFormat("%@%@/", "/",nevoDBDFileURL)
-        var isDir : ObjCBool = ObjCBool(false)
-        let exit:Bool = filemanage.fileExists(atPath: docsdir, isDirectory:&isDir )
-        if (!exit || !isDir.boolValue) {
-            do{
-                try filemanage.createDirectory(atPath: docsdir, withIntermediateDirectories: true, attributes: nil)
-            }catch let error as NSError{
-                NSLog("failed: \(error.localizedDescription)")
-            }
-        }
-        let dbpath:String = docsdir + nevoDBNames
-        return dbpath;
+    func updateDataBase() {
+        let config = Realm.Configuration(
+            schemaVersion: 2,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 2) {
+                }
+        })
+        Realm.Configuration.defaultConfiguration = config
     }
 
     func isSyncState()-> Bool {
@@ -187,38 +116,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         return mConnectionController
     }
     
-    func setWactnID(_ id:Int) {
-        watchID = id
+    func setUpBTManager() {
+        if mConnectionController == nil {
+            self.mConnectionController = ConnectionControllerImpl()
+            self.mConnectionController?.setDelegate(self)
+        }else{
+            self.mConnectionController?.setDelegate(self)
+        }
     }
     
-    func getWactnID()->Int {
-         return watchID
+    func cleanUpBTManager() {
+        if mConnectionController != nil {
+            mConnectionController?.stopScan()
+            mConnectionController?.disconnect()
+            mConnectionController = nil
+        }
+    }
+    
+    func setWatchID(_ id:Int) {
+        let info: [String : Int] = [EVENT_BUS_WATCHID_DIDCHANGE_KEY : id]
+        SwiftEventBus.post(EVENT_BUS_WATCHID_DIDCHANGE_KEY, sender: nil, userInfo: info)
+        
+        UserDefaults.standard.set(id, forKey: WATCHKEY_SETID)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func getWatchID()->Int {
+        if let watchID = UserDefaults.standard.object(forKey: WATCHKEY_SETID) {
+            return watchID as! Int
+        }
+        return -1
     }
     
     func setWatchName(_ name:String) {
-        watchName = name
+        UserDefaults.standard.set(name, forKey: WATCHKEY_SETNAME)
+        UserDefaults.standard.synchronize()
     }
     
     func getWatchName() ->String {
-        return watchName;
+        if let watchID = UserDefaults.standard.object(forKey: WATCHKEY_SETNAME) {
+            return watchID as! String
+        }
+        return "";
     }
-    
-    func setWatchModelNumber(_ number:Int) {
-        watchModelNumber = number
-    }
-    
-    func getWatchModelNumber()->Int {
-        return watchModelNumber
-    }
-    
-    func setWatchModel(_ model:String) {
-        watchModel = model;
-    }
-    
-    func getWatchModel() -> String {
-        return watchModel
-    }
-    
     // MARK: - ConnectionControllerDelegate
     /**
      Called when a packet is received from the device
@@ -237,6 +177,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
             //We just received a full response, so we can safely send the next request
             SyncQueue.sharedInstance.next()
+            
+            if(packet.getHeader() == ReadBatteryLevelNevoRequest.HEADER()){
+                let thispacket:BatteryLevelNevoPacket = packet.copy() as BatteryLevelNevoPacket
+                if(thispacket.isReadBatteryCommand(packet.getPackets())){
+                    let batteryValue:Int = thispacket.getBatteryLevel()
+                    SwiftEventBus.post(EVENT_BUS_BATTERY_STATUS_CHANGED, sender:batteryValue);
+                }
+            }
             
             if(packet.getHeader() == GetWatchName.HEADER()) {
                 let watchpacket = packet.copy() as WatchNamePacket
@@ -268,61 +216,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
             if(packet.getHeader() == SetCardioRequest.HEADER()) {
                 //step5: sync the notification setting, if remove nevo's battery, the nevo notification reset, so here need sync it
                 var mNotificationSettingArray:[NotificationSetting] = []
-                let notArray:NSArray = UserNotification.getAll()
+                let notArray = MEDUserNotification.getAll()
                 let notificationTypeArray:[NotificationType] = [NotificationType.call, NotificationType.email, NotificationType.facebook, NotificationType.sms, NotificationType.wechat]
                 for notificationType in notificationTypeArray {
                     for model in notArray{
-                        let notification:UserNotification = model as! UserNotification
-                        if(notification.NotificationType == notificationType.rawValue as String){
-                            let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: 0, states:notification.status)
+                        let notification:MEDUserNotification = model as! MEDUserNotification
+                        if(notification.notificationType == notificationType.rawValue as String){
+                            let setting:NotificationSetting = NotificationSetting(type: notificationType, clock: notification.clock, color: "",colorName: "", states:notification.isAddWatch,packet:notification.appid,appName:notification.appName)
                             mNotificationSettingArray.append(setting)
                             break
                         }
                     }
                 }
-
                 //start sync notification setting on the phone side
+                XCGLogger.default.debug("SetNortification++++++++++++++")
                 SetNortification(mNotificationSettingArray)
             }
 
             if(packet.getHeader() == SetNortificationRequest.HEADER()) {
-                let weakAlarm:NSArray = UserAlarm.getCriteria("WHERE type = \(0)")
-                let sleepAlarm:NSArray = UserAlarm.getCriteria("WHERE type = \(1)")
-                
-                for index in 0 ..< 14{
-                    let date:Date = Date()
-                    let newAlarm:NewAlarm = NewAlarm(alarmhour: date.hour, alarmmin: date.minute, alarmNumber: index, alarmWeekday: 0)
-                    if(self.isConnected()){
-                        self.setNewAlarm(newAlarm)
-                    }
+                if UserDefaults.standard.getFirmwareVersion() >= 40 && UserDefaults.standard.getSoftwareVersion() >= 27{
+                    self.updateBluetoothScanPeriod()
+                }else{
+                    self.setNewAlarm()
                 }
-                
-                let date:Date = Date()
-                for (index,Value) in weakAlarm.enumerated() {
-                    let alarm:UserAlarm = Value as! UserAlarm
-                    let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
-                    if alarm.status {
-                        let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.dayOfWeek)
-                        self.setNewAlarm(newAlarm)
-                    }
-                }
-                
-                for (index,Value) in sleepAlarm.enumerated() {
-                    let alarm:UserAlarm = Value as! UserAlarm
-                    let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
-                    print("alarmDay:\(alarmDay),alarm:\(alarm.type,alarm.status,alarm.dayOfWeek,date.weekday)")
-                    if alarm.type == 1 && alarm.status && alarm.dayOfWeek == date.weekday{
-                        let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
-                        self.setNewAlarm(newAlarm)
-                    }else{
-                        if alarm.status && alarm.dayOfWeek >= date.weekday{
-                            let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.dayOfWeek)
-                            self.setNewAlarm(newAlarm)
-                        }
-                    }
-                }
-                //start sync data
-                //self.syncActivityData()
+            }
+            
+            if packet.getHeader() == SetBLEConnectionTimeoutRequest.HEADER() {
+                self.setNewAlarm()
             }
 
             if(packet.getHeader() == SetAlarmRequest.HEADER()) {
@@ -343,139 +263,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
             if(packet.getHeader() == ReadDailyTracker.HEADER()) {
                 let thispacket:DailyTrackerNevoPacket = packet.copy() as DailyTrackerNevoPacket
-
-                let timeStr:String = String(format: "%d" ,thispacket.getDateTimer())
-                if(timeStr.length() < 8 ) {
+                guard let timeInterval = thispacket.getDateTimer() else{
+                    print("ERROR! COULD NOT PARSE DATE CORRECTLY SOMEHOW.")
                     return
                 }
+                let timeStr:String = timeInterval.stringFromFormat("yyyyMMdd", locale: DateFormatter().locale)
                 
-                 let index = timeStr.index(timeStr.startIndex, offsetBy: 4)
-                let year:String = timeStr.substring(to: index)
-                
-                let range: Range = timeStr.index(timeStr.startIndex, offsetBy: 4)..<timeStr.index(timeStr.startIndex, offsetBy: 6)
-                let month:String = timeStr.substring(with: range)
-                
-                let range2: Range = timeStr.index(timeStr.startIndex, offsetBy: 6)..<timeStr.index(timeStr.startIndex, offsetBy: 8)
-                let day:String = timeStr.substring(with: range2)
-                
-                let timerInterval:Date = Date.date(year: year.toInt(), month: month.toInt(), day: day.toInt())
-                let timerInter:TimeInterval = timerInterval.timeIntervalSince1970
-
-                _ = UserSteps.updateTable()
-                let stepsArray = UserSteps.getCriteria("WHERE createDate = \(timeStr)")
-                let stepsModel:UserSteps = UserSteps()
-                stepsModel.uid = 0
-                stepsModel.steps = thispacket.getDailySteps()
-                stepsModel.goalsteps = thispacket.getStepsGoal()
-                stepsModel.distance = thispacket.getDailyDist()
-                stepsModel.hourlysteps = "\(AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!))"
-                stepsModel.hourlydistance = "\(AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!))"
-                stepsModel.calories = Double(thispacket.getDailyCalories())
-                stepsModel.hourlycalories = "\(AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!))"
-                stepsModel.inZoneTime = thispacket.getInZoneTime()
-                stepsModel.outZoneTime = thispacket.getOutZoneTime()
-                stepsModel.inactivityTime = thispacket.getDailyRunningDuration()+thispacket.getDailyWalkingDuration()
-                stepsModel.goalreach = Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal())
-                stepsModel.date = timerInter
-                stepsModel.createDate = "\(timeStr)"
-                stepsModel.walking_distance = thispacket.getDailyWalkingDistance()
-                stepsModel.walking_duration = thispacket.getDailyWalkingDuration()
-                stepsModel.walking_calories = thispacket.getDailyCalories()
-                stepsModel.running_distance = thispacket.getRunningDistance()
-                stepsModel.running_duration = thispacket.getDailyRunningDuration()
-                stepsModel.running_calories = thispacket.getDailyCalories()
-                
-                //upload steps data to Nevo service
-                let login:NSArray = UserProfile.getAll()
-                if login.count>0 {
-                    let profile:UserProfile = login[0] as! UserProfile
-                    let dateString:String = timerInterval.stringFromFormat("yyy-MM-dd")
-                    var caloriesValue:Int = 0
-                    var milesValue:Int = 0
-                    StepGoalSetingController.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.steps, completionData: { (miles, calories) in
-                        caloriesValue = Int(calories)
-                        milesValue = Int(miles)
-                    })
-                    
-                    let value:[String:Any] = ["steps":["uid":profile.id,"steps":stepsModel.hourlysteps,"date":dateString,"calories":caloriesValue,"active_time":stepsModel.walking_duration+stepsModel.running_duration,"distance":milesValue]]
-                    stepsModel.isUpload = true
-                    UPDATE_SERVICE_STEPS_REQUEST.syncStepsToService(paramsValue: value, completion: { (result, status) in
-                        
-                    })
+                if self.getWatchID()>1 {
+                    saveSolarHarvest(thispacket: thispacket, date: timeInterval)
                 }
-                if(stepsArray.count>0) {
-                    let step:UserSteps = stepsArray[0] as! UserSteps
-                    if(step.steps < thispacket.getDailySteps()) {
-                        XCGLogger.default.debug("Data that has been saved····")
-                        stepsModel.id = step.id
-                        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                            stepsModel.update()
-                        })
-                    }
-                }else {
-                    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                        stepsModel.add({ (id, completion) -> Void in
-                        })
-                        
-                    })
-                }
-
+                
+                XCGLogger.default.debug("dateString====:\(timeStr)")
+                //save steps
+                let hourlySteps = self.saveStepsToDataBase(thispacket: thispacket, date: timeInterval, dateString: timeStr)
+                
                 //save sleep data for every hour.
                 //save format: first write wake, then write sleep(light&deep)
-                _ = UserSleep.updateTable()
-                let sleepArray = UserSleep.getCriteria("WHERE date = \(timerInterval.timeIntervalSince1970)")
-                let model:UserSleep = UserSleep()
-                model.id = 0
-                model.date = timerInterval.timeIntervalSince1970
-                model.totalSleepTime = thispacket.getDailySleepTime()
-                model.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
-                model.totalWakeTime = 0
-                model.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeTime() as AnyObject!))"
-                model.totalLightTime = 0
-                model.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightTime() as AnyObject!))"
-                model.totalDeepTime = 0
-                model.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepTime() as AnyObject!))"
-                
-                //upload sleep data to validic
-                //UPDATE_VALIDIC_REQUEST.updateSleepDataToValidic(NSArray(arrayLiteral: stepsModel))
-                if login.count>0 {
-                    let profile:UserProfile = login[0] as! UserProfile
-                    let dateString:String = timerInterval.stringFromFormat("yyy-MM-dd")
-                    let value:[String:Any] = ["sleep":["uid":profile.id,"deep_sleep":model.hourlyDeepTime,"light_sleep":model.hourlyLightTime,"wake_time":model.hourlyWakeTime,"date":dateString]]
-                    model.isUpload = true
-                    UPDATE_SERVICE_SLEEP_REQUEST.syncCreateSleepToService(paramsValue:value,completion:{(result,errorid) in
-                        
-                    })
-                }
-                
-                if(sleepArray.count>0) {
-                    let sleep:UserSleep = sleepArray[0] as! UserSleep
-                    let localSleepArray:[Int] = AppTheme.jsonToArray(sleep.hourlySleepTime) as! [Int]
-                    var localTime:Int = 0
-                    
-                    for value in localSleepArray {
-                        localTime+=value
-                    }
-                    
-                    let currentSleepArray:[Int] = thispacket.getHourlySleepTime()
-                    var currentSleepTime:Int = 0
-                    for value in currentSleepArray {
-                        currentSleepTime+=value
-                    }
-                    
-                    if currentSleepTime>localTime {
-                        model.id = sleep.id
-                        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                            _ = model.update()
-                        })
-                    }
-                }else {
-                    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
-                        _ = model.add({ (id, completion) -> Void in
-                        })
-                        
-                    })
-                }
+                self.saveSleepToDataBase(thispacket: thispacket, date: timeInterval, dateString: timeStr)
+
 
                 //TODO:crash  数组越界
                 if Int(currentDay)<savedDailyHistory.count {
@@ -485,7 +290,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                     savedDailyHistory[Int(currentDay)].HourlyCalories = thispacket.getHourlyCalories()
                     
                     //save to health kit
-                    let hk = NevoHKImpl()
+                    let hk = NevoHKManager.manager
                     hk.requestPermission()
                     
                     let now:Date = Date()
@@ -509,7 +314,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                             
                             hk.writeDataPoint(CaloriesToHK(calories: Double(savedDailyHistory[Int(currentDay)].HourlyCalories[index]), date: Date.date(year: saveDay.year, month: saveDay.month, day: saveDay.day, hour: index, minute: 0, second: 0)), resultHandler: { (result, error) in
                                 if (result != true) {
-                                    XCGLogger.default.debug("Save Hourly Calories error\(index),\(error)")
+                                    XCGLogger.default.debug("Save Hourly Calories error\(index),\(String(describing: error))")
                                 }else{
                                     XCGLogger.default.debug("Save Hourly Calories OK")
                                 }
@@ -558,6 +363,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let dailySteps:Int = thispacket.getDailySteps()
                 let dailyStepGoal:Int = thispacket.getDailyStepsGoal()
                 let percent :Float = Float(dailySteps)/Float(dailyStepGoal)
+                if UserDefaults.standard.getFirmwareVersion() >= buildin_firmware_version {
+                    XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd HH:mm:ss"))")
+                }
+                //XCGLogger.default.debug("DailyStepsNevoPacket,steps:\(dailySteps),stepGoal:\(dailyStepGoal),getRTC:\(thispacket.getDateTimer().stringFromFormat("yyyy-MM-dd hh:mm:ss"))")
                 SwiftEventBus.post(EVENT_BUS_BEGIN_SMALL_SYNCACTIVITY, sender:["STEPS":dailySteps,"GOAL":dailyStepGoal,"PERCENT":percent] as AnyObject)
             }
             
@@ -575,13 +384,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 
-    func connectionStateChanged(_ isConnected : Bool) {
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool) {
         //send local notification
         SwiftEventBus.post(EVENT_BUS_CONNECTION_STATE_CHANGED_KEY, sender:isConnected as AnyObject)
 
         if(isConnected) {
             if(self.hasSavedAddress()){
-                let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor(rgba: "#0dac67"))
+                let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor("#0dac67"))
                 banner.dismissesOnTap = true
                 banner.show(duration: 1.5)
             }
@@ -617,15 +426,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
         }
     }
 
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString) {
-        let mcuver = AppTheme.GET_SOFTWARE_VERSION()
-        let blever = AppTheme.GET_FIRMWARE_VERSION()
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int) {
+        let mcuver = buildin_software_version
+        let blever = buildin_firmware_version
 
         XCGLogger.default.debug("Build in software version: \(mcuver), firmware version: \(blever)")
 
-        if ((whichfirmware == DfuFirmwareTypes.softdevice  && version.integerValue < mcuver)
-            || (whichfirmware == DfuFirmwareTypes.application  && version.integerValue < blever)) {
-            //for tutorial screen, don't popup update dialog
+        if ((whichfirmware == DfuFirmwareTypes.softdevice  && version < mcuver)
+            || (whichfirmware == DfuFirmwareTypes.application  && version < blever)) {
+            //for tutorial screen, don't popup update dialog 
             if !mAlertUpdateFW {
                 mAlertUpdateFW = true
                 let titleString:String = NSLocalizedString("Update", comment: "")
@@ -633,39 +442,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
                 let buttonString:String = NSLocalizedString("Update", comment: "")
                 let cancelString:String = NSLocalizedString("Cancel", comment: "")
 
-                if((UIDevice.current.systemVersion as NSString).floatValue >= 8.0){
-                    // is this necessary? i have to change the rootViewController's Class during launch, maybe...
-//                    let tabVC:UITabBarController = self.window?.rootViewController as! UITabBarController
-                    let tabVC = self.window?.rootViewController
-
-                    let actionSheet:UIAlertController = UIAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
-                    let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
-
-                    })
-                    actionSheet.addAction(alertAction1)
-
-                    let alertAction2:AlertAction = AlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
-                        let otaCont:NevoOtaViewController = NevoOtaViewController()
-                        let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
-                        tabVC?.present(navigation, animated: true, completion: nil)
-
-                    })
-                    actionSheet.addAction(alertAction2)
-                    if !AppTheme.isTargetLunaR_OR_Nevo() {
-                        alertAction1.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                        alertAction2.setValue(UIColor.getBaseColor(), forKey: "titleTextColor")
-                    }else{
-                        alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                        alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
-                    }
-                    tabVC?.present(actionSheet, animated: true, completion: nil)
-                }else{
-                    let actionSheet:UIAlertView = UIAlertView(title: titleString, message: msg, delegate: self, cancelButtonTitle: cancelString, otherButtonTitles: buttonString)
-                    actionSheet.layer.backgroundColor = AppTheme.NEVO_SOLAR_YELLOW().cgColor
-                    actionSheet.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-                    actionSheet.tag = alertUpdateTag
-                    actionSheet.show()
-                }
+                let tabVC = self.window?.rootViewController
+                
+                let actionSheet:MEDAlertController = MEDAlertController(title: titleString, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+                let alertAction1:AlertAction = AlertAction(title: cancelString, style: UIAlertActionStyle.cancel, handler: { ( alert) -> Void in
+                    
+                })
+                actionSheet.addAction(alertAction1)
+                
+                let alertAction2:AlertAction = AlertAction(title: buttonString, style: UIAlertActionStyle.default, handler: { ( alert) -> Void in
+                    let otaCont:NevoOtaViewController = NevoOtaViewController()
+                    let navigation:UINavigationController = UINavigationController(rootViewController: otaCont)
+                    tabVC?.present(navigation, animated: true, completion: nil)
+                    
+                })
+                actionSheet.addAction(alertAction2)
+                alertAction1.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                alertAction2.setValue(AppTheme.NEVO_SOLAR_YELLOW(), forKey: "titleTextColor")
+                tabVC?.present(actionSheet, animated: true, completion: nil)
 
             }
         }
@@ -679,6 +473,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
     }
 
     func bluetoothEnabled(_ enabled:Bool) {
+        let info: [String : Bool] = [EVENT_BUS_BLUETOOTH_STATE_CHANGED : enabled]
+        SwiftEventBus.post(EVENT_BUS_BLUETOOTH_STATE_CHANGED, sender: nil, userInfo: info)
         if(!enabled && self.hasSavedAddress()) {
             let banner = MEDBanner(title: NSLocalizedString("bluetooth_turned_off_enable", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
             banner.dismissesOnTap = true
@@ -697,47 +493,196 @@ class AppDelegate: UIResponder, UIApplicationDelegate,ConnectionControllerDelega
 
 extension AppDelegate {
     
-    func startLocation() {
-        NSLog("AuthorizationStatus:\(LOCATION_MANAGER.gpsAuthorizationStatus)")
-        if LOCATION_MANAGER.gpsAuthorizationStatus>2 {
-            LOCATION_MANAGER.startLocation()
-            LOCATION_MANAGER.didChangeAuthorization = { status in
-                let states:CLAuthorizationStatus = status as CLAuthorizationStatus
-                XCGLogger.default.debug("Location didChangeAuthorization:\(states.rawValue)")
+    func saveSolarHarvest(thispacket:DailyTrackerNevoPacket,date:Date)  {
+        let login = MEDUserProfile.getAll()
+        if login.count>0 {
+            let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
+            let uidString:String = "\(userProfile.uid)"
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
+            let solar = SolarHarvest.getFilter("key = '\(keys)'")
+            if solar.count == 0 {
+                let solarTime:SolarHarvest = SolarHarvest()
+                solarTime.key = keys
+                solarTime.date = date.timeIntervalSince1970
+                solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
+                solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
+                solarTime.uid = userProfile.uid
+                _ = solarTime.add()
+            }else{
+                let solarTime:SolarHarvest = solar[0] as! SolarHarvest
+                let realm = try! Realm()
+                try! realm.write {
+                    solarTime.date = date.timeIntervalSince1970
+                    solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
+                    solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
+                    solarTime.uid = userProfile.uid;
+                }
             }
+        }else{
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+            let solarTime:SolarHarvest = SolarHarvest()
+            solarTime.key = keys
+            solarTime.date = date.timeIntervalSince1970
+            solarTime.solarTotalTime = thispacket.getTotalHarvestTime()
+            solarTime.solarHourlyTime = "\(AppTheme.toJSONString(thispacket.getHourlyHarestTime() as AnyObject!))"
+            solarTime.uid = 0
+            _ = solarTime.add()
+        }
+    }
+    
+    
+    func saveStepsToDataBase(thispacket:DailyTrackerNevoPacket,date:Date,dateString:String) ->[Int] {
+        let login = MEDUserProfile.getAll()
+        
+        let stepsModel:MEDUserSteps = MEDUserSteps()
+        stepsModel.totalSteps = thispacket.getDailySteps()
+        stepsModel.goalsteps = thispacket.getStepsGoal()
+        stepsModel.distance = thispacket.getDailyDist()
+        stepsModel.hourlysteps = "\(AppTheme.toJSONString(thispacket.getHourlySteps() as AnyObject!))"
+        stepsModel.hourlydistance = "\(AppTheme.toJSONString(thispacket.getHourlyDist() as AnyObject!))"
+        stepsModel.totalCalories = Double(thispacket.getDailyCalories())
+
+        
+        let distanceWalkVlaue = thispacket.getHourlyDist()
+        let distanceRunVlaue = thispacket.getHourlyRunningDistance()
+        var hourlyDistanceValue:[Int] = [Int](repeating: 0, count: 24)
+        for (index,value) in distanceWalkVlaue.enumerated() {
+            let distanceValue:Int = distanceRunVlaue[index]
+            hourlyDistanceValue.replaceSubrange(index..<index+1, with: [distanceValue+value])
+        }
+        stepsModel.hourlydistance = "\(AppTheme.toJSONString(hourlyDistanceValue as AnyObject!))"
+        stepsModel.totalCalories = Double(thispacket.getDailyCalories())
+        stepsModel.hourlycalories = "\(AppTheme.toJSONString(thispacket.getHourlyCalories() as AnyObject!))"
+        stepsModel.inactivityTime = thispacket.getInactivityTime()
+        stepsModel.goalreach = Double(thispacket.getDailySteps())/Double(thispacket.getStepsGoal())
+        stepsModel.date = date.timeIntervalSince1970
+        stepsModel.createDate = "\(dateString)"
+        stepsModel.walking_distance = thispacket.getDailyWalkingDistance()
+        stepsModel.walking_duration = thispacket.getDailyWalkingDuration()
+        stepsModel.walking_calories = thispacket.getDailyCalories()
+        stepsModel.running_distance = thispacket.getRunningDistance()
+        stepsModel.running_duration = thispacket.getDailyRunningDuration()
+        stepsModel.running_calories = thispacket.getDailyCalories()
+
+        
+        if login.count>0 {
+            let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
+            let uidString:String = "\(userProfile.uid)"
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
+            stepsModel.uid = userProfile.uid
+            stepsModel.key = keys
             
-            LOCATION_MANAGER.didUpdateLocations = { location in
-                let locationArray = location as [CLLocation]
-                XCGLogger.default.debug("Location didUpdateLocations:\(locationArray)")
-                self.longitude = locationArray.last!.coordinate.longitude
-                self.latitude = locationArray.last!.coordinate.latitude
-                NSLog("longitude:\(self.longitude),latitude:\(self.latitude)")
-                self.setSolar()
+            let dateString:String = date.stringFromFormat("yyy-MM-dd")
+            var caloriesValue:Int = 0
+            var milesValue:Double = 0
+            DataCalculation.calculationData((stepsModel.walking_duration+stepsModel.running_duration), steps: stepsModel.totalSteps, completionData: { (miles, calories) in
+                caloriesValue = Int(calories)
+                milesValue = miles
+            })
+            
+            let activeTime: Int = stepsModel.walking_duration+stepsModel.running_duration
+            
+            MEDStepsNetworkManager.createSteps(uid: userProfile.uid, steps: stepsModel.hourlysteps, date: dateString, activeTime: activeTime, calories: caloriesValue, distance: milesValue, completion: { (success: Bool) in
                 
-            }
+            })
             
-            LOCATION_MANAGER.didFailWithError = { error in
-                XCGLogger.default.debug("Location didFailWithError:\(error)")
+            let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
+            if stepsArray.count>0 {
+                let steps:MEDUserSteps = stepsArray[0] as! MEDUserSteps
+                let localStepsArray:[Int] = AppTheme.jsonToArray(steps.hourlysteps) as! [Int]
+                var localValue:Int = 0
+                
+                for value in localStepsArray {
+                    localValue+=value
+                }
+                
+                let currentStepsArray:[Int] = thispacket.getHourlySteps()
+                var currentStepsValue:Int = 0
+                for value in currentStepsArray {
+                    currentStepsValue+=value
+                }
+                
+                if currentStepsValue>localValue {
+                    stepsModel.isUpload = true
+                    _ = stepsModel.add()
+                }
+            }else{
+                stepsModel.isUpload = false
+                _ = stepsModel.add()
             }
+        }else{
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+            //let stepsArray = MEDUserSteps.getFilter("key == '\(keys)'")
+            stepsModel.uid = 0
+            stepsModel.key = keys
+            stepsModel.isUpload = false
+            _ = stepsModel.add()
+        }
+        return thispacket.getHourlySteps();
+    }
+    
+    func saveSleepToDataBase(thispacket:DailyTrackerNevoPacket,date:Date,dateString:String) {
+        let login = MEDUserProfile.getAll()
+        
+        let sleepModel:MEDUserSleep = MEDUserSleep()
+        sleepModel.date = date.timeIntervalSince1970
+        sleepModel.totalSleepTime = thispacket.getDailySleepTime()
+        sleepModel.hourlySleepTime = "\(AppTheme.toJSONString(thispacket.getHourlySleepTime() as AnyObject!))"
+        sleepModel.totalWakeTime = thispacket.getDailyWakeTime()
+        sleepModel.hourlyWakeTime = "\(AppTheme.toJSONString(thispacket.getHourlyWakeTime() as AnyObject!))"
+        sleepModel.totalLightTime = thispacket.getDailyLightTime()
+        sleepModel.hourlyLightTime = "\(AppTheme.toJSONString(thispacket.getHourlyLightTime() as AnyObject!))"
+        sleepModel.totalDeepTime = thispacket.getDailyDeepTime()
+        sleepModel.hourlyDeepTime = "\(AppTheme.toJSONString(thispacket.getHourlyDeepTime() as AnyObject!))"
+        
+        if login.count>0 {
+            let userProfile:MEDUserProfile = login[0] as! MEDUserProfile
+            let uidString:String = "\(userProfile.uid)"
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)+uidString
+            sleepModel.uid = userProfile.uid
+            sleepModel.key = keys
+            
+            let dateString:String = date.stringFromFormat("yyy-MM-dd")
+            
+            MEDSleepNetworkManager.createSleep(uid: userProfile.uid, deepSleep: sleepModel.hourlyDeepTime, lightSleep: sleepModel.hourlyLightTime, wakeTime: sleepModel.hourlyWakeTime, date: dateString, completion: { (success:Bool) in
+                
+            })
+            
+            let sleepArray = MEDUserSleep.getFilter("key = '\(keys)'")
+            if sleepArray.count>0 {
+                let sleep:MEDUserSleep = sleepArray[0] as! MEDUserSleep
+                let localSleepArray:[Int] = AppTheme.jsonToArray(sleep.hourlySleepTime) as! [Int]
+                var localTime:Int = 0
+                
+                for value in localSleepArray {
+                    localTime+=value
+                }
+                
+                let currentSleepArray:[Int] = thispacket.getHourlySleepTime()
+                var currentSleepTime:Int = 0
+                for value in currentSleepArray {
+                    currentSleepTime+=value
+                }
+                
+                if currentSleepTime>localTime {
+                    sleepModel.isUpload = true
+                    _ = sleepModel.add()
+                }
+            }else{
+                sleepModel.isUpload = true
+                _ = sleepModel.add()
+            }
+        }else{
+            let keys:String = date.stringFromFormat("yyyyMMddHHmmss", locale: DateFormatter().locale)
+            sleepModel.uid = 0
+            sleepModel.key = keys
+            sleepModel.isUpload = false
+            _ = sleepModel.add()
         }
     }
-    
-    func setSolar() {
-        if longitude != 0 && latitude != 0 {
-            let solar = Solar(latitude: latitude,
-                              longitude: longitude)
-            let sunrise = solar!.sunrise
-            let sunset = solar!.sunset
-            self.setSunriseAndSunset(sunrise: sunrise!, sunset: sunset!)
-        }
-    }
-    
-    func getLongitude() -> Double {
-        return longitude;
-    }
-    
-    func getLatitude() -> Double {
-        return latitude;
+
+    func updateBluetoothScanPeriod() {
+        sendRequest(SetBLEConnectionTimeoutRequest(minutes: UInt16(UserDefaults.standard.getDurationSearch())))
     }
 }
 

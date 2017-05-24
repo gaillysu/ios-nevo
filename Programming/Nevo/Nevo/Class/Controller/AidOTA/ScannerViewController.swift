@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreBluetooth
-import PopupController
 
 @objc protocol SelectPeripheralDelegate{
     @objc optional func onDidSelectPeripheral(_ dFUMode:Bool,_ peripheral:CBPeripheral, _ manager:CBCentralManager)
@@ -115,11 +114,12 @@ class ScannerViewController: UIViewController, CBCentralManagerDelegate, UITable
         tableView.deselectRow(at: indexPath, animated: true)
         self.selectedPeripheral = discoveredPeripherals![(indexPath as NSIndexPath).row]
         self.selectedPeripheralIsSecure = securePeripheralMarkers![(indexPath as NSIndexPath).row]
-
-        self.dismiss(animated: true) { 
+        if self.navigationController?.popViewController(animated: true) == nil {
+            self.dismiss(animated: true, completion: nil)
+        }
+        AppDelegate.getAppDelegate().delay(seconds: 1.2) { 
             self.didDelegate?.onDidSelectPeripheral!(self.selectedPeripheralIsSecure!, self.selectedPeripheral!, self.centralManager)
         }
-        //didDelegate?.onDidSelectPeripheral(nil)
     }
 }
 

@@ -7,121 +7,155 @@
 //
 
 import UIKit
+import UIColor_Hex_Swift
+import MSCellAccessory
 
 private let NotificationSwitchButtonTAG:Int = 1690
 class SetingView: UIView {
-
+    
     @IBOutlet var tableListView: UITableView!
     
+    var settingsViewController:SetingViewController?
     fileprivate var mDelegate:ButtonManagerCallBack?
     //var animationView:AnimationView!
     var mSendLocalNotificationSwitchButton:UISwitch!
-
+    
+    let unitArray = [NSLocalizedString("metrics", comment: ""),NSLocalizedString("imperial", comment: "")]
+    weak var unitTextField:UITextField?
+    var picker:UIPickerView?
     func bulidNotificationViewUI(_ delegate:ButtonManagerCallBack){
-        //title.text = NSLocalizedString("Setting", comment: "")
         mDelegate = delegate
-        //tableListView.backgroundColor = UIColor.white
         tableListView.separatorColor = UIColor.lightGray
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            tableListView.backgroundColor = UIColor.getLightBaseColor()
-            tableListView.separatorColor = UIColor.getLightBaseColor()
-        }
+        tableListView.viewDefaultColorful()
     }
-
-
+    
     @IBAction func buttonAction(_ sender: AnyObject) {
         mDelegate?.controllManager(sender)
     }
     
-    /**
-     Constructing the title only TableViewCell
-
-     :param: indexPath The path of the TableView
-     :param: tableView TableView Object
-     :param: title     The title string
-
-     :returns: UITableViewCell
-     */
-    func NotificationSystemTableViewCell(_ indexPath:IndexPath,tableView:UITableView,title:String,imageName:String)->UITableViewCell {
-        let endCellID:String = "NotificationSystemTableViewCell"
-        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
-        if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: endCellID)
+    func NotificationSystemTableViewCell(_ indexPath:IndexPath,tableView:UITableView,model:(cellName:String,imageName:String))->UITableViewCell {
+        let cellID:String = "NotificationSystemTableViewCell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellID)
+        if (cell == nil) {
+            switch indexPath.section {
+            case 1:
+                switch indexPath.row {
+                case 0:
+                    cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: cellID)
+                case 2:
+                    cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: cellID)
+                default:
+                    cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID)
+                }
+            case 2:
+                switch indexPath.row {
+                case 1:
+                    cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: cellID)
+                    picker = UIPickerView()
+                    guard let picker = self.picker else{
+                        return cell!
+                    }
+                    picker.delegate = self
+                    picker.dataSource = self
+                    unitTextField = UITextField(frame: CGRect(x: 0, y: 300, width: 0, height: 0))
+                    addSubview(unitTextField!)
+                    unitTextField?.inputView = picker
+        
+                default:
+                    cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID)
+                }
+            default:
+                cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID)
+            }
         }
-        endCell?.backgroundColor = UIColor.white
-        if(title == NSLocalizedString("find_my_watch", comment: "") || title == NSLocalizedString("forget_watch", comment: "")) {
+        cell?.backgroundColor = UIColor.white
+        cell?.textLabel?.text = model.cellName
+        cell?.textLabel?.textColor = UIColor.black
+        cell?.textLabel!.backgroundColor = UIColor.clear
+        cell?.imageView?.image = UIImage(named: model.imageName)
+        cell?.accessoryType = .disclosureIndicator
+        cell?.viewDefaultColorful()
+
+        if indexPath.row == 0 && indexPath.section == 1 {
+
+            let connectionController = AppDelegate.getAppDelegate().getMconnectionController()!
+            var statusString = NSLocalizedString("Disconnected", comment: "")
+            var color = UIColor.darkRed()
+            if connectionController.isConnected() {
+                if UserDefaults.standard.getFirmwareVersion() < AppTheme.GET_FIRMWARE_VERSION() || UserDefaults.standard.getSoftwareVersion() < AppTheme.GET_SOFTWARE_VERSION() {
+                    statusString = NSLocalizedString("New Version Available!", comment: "")
+                    color = UIColor.getBaseColor()
+                } else {
+                    statusString = NSLocalizedString("Connected", comment: "")
+                    color = UIColor.darkGreen()
+                }
+            }
+            cell?.detailTextLabel?.text = statusString
+            cell?.detailTextLabel?.textColor = color
+            cell?.detailTextLabel?.alpha = 0.7
+        }else if indexPath.row == 2 && indexPath.section == 1{
+            if UserDefaults.standard.getFirmwareVersion() >= 40 && UserDefaults.standard.getSoftwareVersion() >= 27{
+                cell?.enable(on: true)
+                cell?.detailTextLabel?.textColor = UIColor.lightGray
+                cell?.detailTextLabel?.text = UserDefaults.standard.getDurationSearch().shortTimeRepresentation()
+                cell?.accessoryView = nil
+                cell?.accessoryType = .disclosureIndicator
+            }else{
+                cell?.enable(on: false)
+                cell?.accessoryType = .none
+                cell?.isUserInteractionEnabled = true
+                cell?.accessoryView = MSCellAccessory.init(type: FLAT_DETAIL_BUTTON , color: UIColor.getBaseColor())
+                cell?.accessoryView?.addGestureRecognizer(UITapGestureRecognizer(target: settingsViewController, action: #selector(settingsViewController?.showUpdateNevoAlertView)))
+                cell?.selectionStyle = .none
+            }
+        }else if indexPath.row == 4 && indexPath.section == 1{
             let activity:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
             activity.center = CGPoint(x: UIScreen.main.bounds.size.width-activity.frame.size.width, y: 50/2.0)
-            endCell?.contentView.addSubview(activity)
-        }else{
-            endCell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-        }
-        
-        endCell?.textLabel?.text = title
-        endCell?.textLabel?.textColor = UIColor.black
-        endCell?.textLabel!.backgroundColor = UIColor.clear
-        endCell?.imageView?.image = UIImage(named: imageName)
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            if title == "My Nevo" {
-             endCell?.textLabel?.text = "My LunaR";
+            cell?.contentView.addSubview(activity)
+            activity.viewDefaultColorful()
+            cell?.accessoryType = .none
+        }else if indexPath.row == 1 && indexPath.section == 2{
+            if let unit = MEDSettings.int(forKey: "UserSelectedUnit"){
+                if unit == 0 {
+                    cell?.detailTextLabel?.text = "Metrics"
+                } else {
+                    cell?.detailTextLabel?.text = "Imperical"
+                }
             }
-            endCell?.backgroundColor = UIColor.getGreyColor()
-            mSendLocalNotificationSwitchButton?.onTintColor = UIColor.getBaseColor()
-            endCell?.textLabel?.textColor = UIColor.white
+            cell?.detailTextLabel?.textColor = UIColor.lightGray
         }
-        
-        return endCell!
+        return cell!
     }
-
-    /**
-     LinkLoss Notifications TableViewCell
-
-     :param: indexPath Path
-     :param: tableView tableView object
-     :param: title     title string
-
-     :returns: return LinkLoss Notifications TableViewCell
-     */
-    func LinkLossNotificationsTableViewCell(_ indexPath:IndexPath,tableView:UITableView,title:String ,imageName:String)->UITableViewCell {
-        let endCellID:String = "LinkLossNotificationsTableViewCell"
-        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
-        if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: endCellID)
+    
+    func LinkLossNotificationsTableViewCell(_ indexPath:IndexPath,tableView:UITableView,model:(cellName:String,imageName:String))->UITableViewCell {
+        let cellID:String = "LinkLossNotificationsTableViewCell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellID)
+        if (cell == nil) {
+            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID)
         }
-        endCell?.backgroundColor = UIColor.white
-        endCell?.contentView.backgroundColor = UIColor.white
-        endCell?.imageView?.image = UIImage(named: imageName)
-        endCell?.textLabel?.text = title
-        endCell?.textLabel?.textColor = UIColor.black
-        
-        let view = endCell!.contentView.viewWithTag(NotificationSwitchButtonTAG)
+        cell?.backgroundColor = UIColor.white
+        cell?.contentView.backgroundColor = UIColor.white
+        cell?.textLabel?.text = model.cellName
+        cell?.imageView?.image = UIImage(named: model.imageName)
+        cell?.textLabel?.textColor = UIColor.black
+        let view = cell!.contentView.viewWithTag(NotificationSwitchButtonTAG)
         if view == nil {
             mSendLocalNotificationSwitchButton = UISwitch(frame: CGRect(x: 0,y: 0,width: 51,height: 31))
             mSendLocalNotificationSwitchButton.tag = NotificationSwitchButtonTAG
             mSendLocalNotificationSwitchButton?.isOn = ConnectionManager.sharedInstance.getIsSendLocalMsg()
             mSendLocalNotificationSwitchButton?.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
             mSendLocalNotificationSwitchButton?.addTarget(self, action: #selector(SetingView.buttonAction(_:)), for: UIControlEvents.valueChanged)
-            mSendLocalNotificationSwitchButton?.center = CGPoint(x: UIScreen.main.bounds.size.width-40, y: 50.0/2.0)
-            endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)
+            mSendLocalNotificationSwitchButton?.center = CGPoint(x: UIScreen.main.bounds.size.width-32, y: 50.0/2.0)
+            cell?.contentView.addSubview(mSendLocalNotificationSwitchButton!)
         }
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            endCell?.backgroundColor = UIColor.getGreyColor()
-            endCell?.contentView.backgroundColor = UIColor.getGreyColor()
-            mSendLocalNotificationSwitchButton?.onTintColor = UIColor.getBaseColor()
-            endCell?.textLabel?.textColor = UIColor.white
-        }
-        return endCell!
+        // Theme adjust
+        cell?.viewDefaultColorful()
+        mSendLocalNotificationSwitchButton.viewDefaultColorful()
+        
+        return cell!
     }
-
-    /**
-    get the icon according to the notificationSetting
     
-    :param: notificationSetting NotificationSetting
-    
-    :returns: return the icon
-    */
     class func getNotificationSettingIcon(_ notificationSetting:NotificationSetting) -> String {
         var icon:String = ""
         switch notificationSetting.getType() {
@@ -139,40 +173,69 @@ class SetingView: UIView {
             icon = "WeChat_Icon"
         case .whatsapp:
             icon = "WeChat_Icon"
+        case .other:
+            icon = "WeChat_Icon"
         }
+        
         return icon
     }
     
     func NotificationSwicthCell(_ indexPath:IndexPath)->UITableViewCell {
-        let endCellID:String = "SwicthCell"
-        var endCell:UITableViewCell?
-        endCell = tableListView.dequeueReusableCell(withIdentifier: endCellID)
-        if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: endCellID)
+        let cellID:String = "SwicthCell"
+        var cell:UITableViewCell?
+        cell = tableListView.dequeueReusableCell(withIdentifier: cellID)
+        if (cell == nil) {
+            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID)
             mSendLocalNotificationSwitchButton = UISwitch(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-            mSendLocalNotificationSwitchButton.center = CGPoint(x: endCell!.contentView.frame.size.width-60, y: 65/2.0)
+            mSendLocalNotificationSwitchButton.center = CGPoint(x: cell!.contentView.frame.size.width-60, y: 65/2.0)
             mSendLocalNotificationSwitchButton.addTarget(self, action: #selector(SetingView.SendLocalNotificationSwitchAction(_:)), for: UIControlEvents.valueChanged)
             mSendLocalNotificationSwitchButton.isOn = ConnectionManager.sharedInstance.getIsSendLocalMsg()
             mSendLocalNotificationSwitchButton.tintColor = AppTheme.NEVO_SOLAR_GRAY()
             mSendLocalNotificationSwitchButton.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            endCell?.contentView.addSubview(mSendLocalNotificationSwitchButton)
-            endCell?.layer.borderWidth = 0.5;
-            endCell?.layer.borderColor = UIColor.gray.cgColor;
-            //endCell?.selectionStyle = UITableViewCellSelectionStyle.None;
-            endCell?.textLabel?.text = NSLocalizedString("Link-Loss Notifications", comment: "")
+            cell?.contentView.addSubview(mSendLocalNotificationSwitchButton)
+            cell?.layer.borderWidth = 0.5;
+            cell?.layer.borderColor = UIColor.gray.cgColor;
+            //cell?.selectionStyle = UITableViewCellSelectionStyle.None;
+            cell?.textLabel?.text = NSLocalizedString("Link-Loss Notifications", comment: "")
         }
-        return endCell!
+        return cell!
     }
     
     func SendLocalNotificationSwitchAction(_ swicth:UISwitch) {
         mDelegate?.controllManager(swicth)
     }
+}
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+// MARK: - UIPickerViewDataSource
+extension SetingView: UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
-    */
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return unitArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return unitArray[row]
+    }
+}
+
+extension SetingView: UITextFieldDelegate{
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return false
+    }
+}
+
+// MARK: - UIPickerViewDelegate
+extension SetingView: UIPickerViewDataSource {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        MEDSettings.setValue(row, forKey: "UserSelectedUnit")
+        let cell = self.tableListView.cellForRow(at: IndexPath(row: 1, section: 2))
+        if row == 0 {
+            cell?.detailTextLabel?.text = "Metrics"
+        } else {
+            cell?.detailTextLabel?.text = "Imperical"
+        }
+    }
 }

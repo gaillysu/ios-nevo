@@ -12,21 +12,7 @@ class AlarmTypeCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        viewDefaultColorful()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.textLabel?.textColor = UIColor.white
-            self.detailTextLabel?.textColor = UIColor.white
-        }
-    }
-    
 }

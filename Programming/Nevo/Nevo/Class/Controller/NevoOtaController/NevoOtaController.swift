@@ -30,7 +30,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     /** check the OTA is doing or stop */
     fileprivate var mTimeoutTimer:Timer?
-    fileprivate let MAX_TIME = 30
+    fileprivate let MAX_TIME = 15
     fileprivate var lastprogress = 0.0
     //added for MCU OTA
     
@@ -82,7 +82,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             }else{
                 XCGLogger.default.debug("Error: file is empty!");
                 let errorMessage = "Error on openning file\n Message: file is empty or not exist";
-                mDelegate?.onError(errorMessage as NSString)
+                mDelegate?.onError(errorMessage)
             }
         }else{
             MCU_openfirmware(fileURL)
@@ -91,7 +91,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     fileprivate func convertHexFileToBin(_ hexFileData:Data){
         binFileData = IntelHex2BinConverter.convert(hexFileData)
-        XCGLogger.default.debug("HexFileSize: \(hexFileData.count) and BinFileSize: \(self.binFileData?.count)")
+        XCGLogger.default.debug("HexFileSize: \(hexFileData.count) and BinFileSize: \(String(describing: self.binFileData?.count))")
         numberOfPackets =  (binFileData?.count)! / enumPacketOption.packet_SIZE.rawValue
         bytesInLastPacket = ((binFileData?.count)! % enumPacketOption.packet_SIZE.rawValue);
         if (bytesInLastPacket == 0) {
@@ -220,7 +220,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     
     fileprivate func processStartDFUResponseStatus(){
         XCGLogger.default.debug("processStartDFUResponseStatus");
-        let errorMessage:NSString = "Error on StartDFU\n Message: \(responseErrorMessage(dfuResponse.responseStatus))" as NSString
+        let errorMessage = "Error on StartDFU\n Message: \(responseErrorMessage(dfuResponse.responseStatus))"
         switch (dfuResponse.responseStatus) {
         case DfuOperationStatus.operation_SUCCESSFUL_RESPONSE.rawValue:
             XCGLogger.default.debug("successfully received startDFU notification");
@@ -245,10 +245,14 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         if (dfuResponse.responseStatus == DfuOperationStatus.operation_SUCCESSFUL_RESPONSE.rawValue) {
             XCGLogger.default.debug("successfully received notification for whole File transfer");
             validateFirmware()
+            
+            AppDelegate.getAppDelegate().delay(seconds: 0.2, completion: {
+                self.activateAndReset()
+            })
         }else {
             XCGLogger.default.debug("Firmware Image failed, Error Status: \(self.responseErrorMessage(self.dfuResponse.responseStatus))");
             let errorMessage = "Error on Receive Firmware Image\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
-            mDelegate?.onError(errorMessage as NSString)
+            mDelegate?.onError(errorMessage)
             resetSystem()
         }
 
@@ -263,7 +267,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         }else {
             XCGLogger.default.debug("Firmware validate failed, Error Status: \( self.responseErrorMessage(self.dfuResponse.responseStatus))");
             let errorMessage = "Error on Validate Firmware Request\n Message: \(responseErrorMessage(dfuResponse.responseStatus))";
-            mDelegate?.onError(errorMessage as NSString)
+            mDelegate?.onError(errorMessage)
             resetSystem()
         }
     }
@@ -309,7 +313,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     /*
     see ConnectionControllerDelegate protocol
     */
-    func connectionStateChanged(_ isConnected : Bool) {
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool) {
 
         mDelegate?.connectionStateChanged(isConnected)
         //only BLE OTA run below code
@@ -418,7 +422,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
     /**
     See ConnectionControllerDelegate
     */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString){
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int){
         mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
     }
 
@@ -462,9 +466,8 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                 self.mcu_broken_state = DFUControllerState.inittialize
             }
             XCGLogger.default.debug("* * * OTA timeout * * *")
-            let errorMessage = NSLocalizedString("ota_timeout",comment: "") as NSString
+            let errorMessage = "OTA Failed"
             mDelegate?.onError(errorMessage)
-
         }else{
             lastprogress = progress
         }
@@ -476,7 +479,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
             mConnectionController.sendRequest(StartOTAOldRequest())
             mConnectionController.sendRequest(writeFileSizeOldRequest(filelength: binFileSize))
         }else{
-            let errorMessage :NSString  = "Old DFU only supports Application upload"
+            let errorMessage = "Old DFU only supports Application upload"
             mDelegate?.onError(errorMessage)
             resetSystem()
         }
@@ -638,7 +641,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
                         mDelegate?.onSuccessfulFileTranferred()
                     }else{
                         XCGLogger.default.debug("Checksum error ,OTA get failure!");
-                        mDelegate?.onError(NSString(string:"Checksum error ,OTA get failure!"))
+                        mDelegate?.onError("Checksum error ,OTA get failure!")
                     }
                 }
             }
@@ -684,7 +687,7 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         self.state = DFUControllerState.inittialize
         
         if(dfuFirmwareType == DfuFirmwareTypes.application ){
-            self.mConnectionController.restoreSavedAddress()
+            self.mConnectionController.forgetSavedAddress()
         }
 
         if switch2SyncController{
@@ -693,21 +696,6 @@ class NevoOtaController : NSObject,ConnectionControllerDelegate {
         self.mConnectionController.setOTAMode(false,Disconnect:true)
         self.mConnectionController.connect()
     }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func  getFirmwareVersion() -> NSString{
-        return isConnected() ? self.mConnectionController.getFirmwareVersion() : NSString()
-    }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func  getSoftwareVersion() -> NSString{
-        return isConnected() ? self.mConnectionController.getSoftwareVersion() : NSString()
-    }
-
 }
 
 /**
@@ -720,13 +708,13 @@ protocol NevoOtaControllerDelegate {
     func onDFUCancelled()
     func onTransferPercentage(_: Int)
     func onSuccessfulFileTranferred()
-    func onError(_ errorMessage: NSString)
+    func onError(_ errorMessage: String)
     /**
     Call when finished OTA, will reconnect nevo and read firmware, refresh the firmware  to screen view
     @parameter whichfirmware, firmware type
     @parameter version, return the version
     */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int)
     /**
     See SyncControllerDelegate
     */

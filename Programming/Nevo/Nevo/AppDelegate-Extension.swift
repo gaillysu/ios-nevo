@@ -9,6 +9,9 @@
 import Foundation
 import XCGLogger
 import SwiftEventBus
+import Alamofire
+import Solar
+import RealmSwift
 
 // MARK: - LAUNCH LOGIC
 extension AppDelegate {
@@ -42,14 +45,81 @@ extension AppDelegate {
         sendRequest(SetNewAlarmRequest(alarm:alarm))
     }
     
-    
-    func SetNortification(_ settingArray:[NotificationSetting]) {
-        XCGLogger.default.debug("SetNortification")
-        sendRequest(SetNortificationRequest(settingArray: settingArray))
+    func setNewAlarm() {
+        print("Setting new alarm anyway")
+        let lunarAlarm:[MEDUserAlarm] = MEDUserAlarm.getAll() as! [MEDUserAlarm]
+        var weakAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 0})
+        var sleepAlarm:[MEDUserAlarm] = lunarAlarm.filter({$0.type == 1})
+        
+        if weakAlarm.count<7 {
+            for _ in weakAlarm.count..<7 {
+                let alarm:MEDUserAlarm = MEDUserAlarm()
+                alarm.timer = Date().timeIntervalSince1970
+                alarm.label = "Off"
+                alarm.status = false
+                alarm.alarmWeek = 0
+                weakAlarm.append(alarm)
+            }
+        }
+        
+        if sleepAlarm.count<7 {
+            for _ in sleepAlarm.count..<7 {
+                let alarm:MEDUserAlarm = MEDUserAlarm()
+                alarm.timer = Date().timeIntervalSince1970
+                alarm.label = "Off"
+                alarm.status = false
+                alarm.alarmWeek = 0
+                sleepAlarm.append(alarm)
+            }
+        }
+        
+        let date:Date = Date()
+        for (index,Value) in weakAlarm.enumerated() {
+            let alarm:MEDUserAlarm = Value
+            let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
+            let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index, alarmWeekday: alarm.alarmWeek)
+            sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+        }
+        
+        for (index,Value) in sleepAlarm.enumerated() {
+            let alarm:MEDUserAlarm = Value
+            let alarmDay:Date = Date(timeIntervalSince1970: alarm.timer)
+            if alarm.alarmWeek == date.weekday {
+                let nowDate:Date = Date.date(year: Date().year, month: Date().month, day: Date().day, hour: alarmDay.hour, minute: alarmDay.minute, second: 0)
+                if nowDate.timeIntervalSince1970<Date().timeIntervalSince1970 {
+                    let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
+                    sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+                }else{
+                    let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.alarmWeek)
+                    sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+                }
+            }else{
+                if alarm.alarmWeek > date.weekday {
+                    let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: alarm.alarmWeek)
+                    sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+                }else{
+                    let newAlarm:NewAlarm = NewAlarm(alarmhour: alarmDay.hour, alarmmin: alarmDay.minute, alarmNumber: index+7, alarmWeekday: 0)
+                    sendRequest(SetNewAlarmRequest(alarm:newAlarm))
+                }
+            }
+        }
+        
     }
     
-    func setSunriseAndSunset(sunrise:Date,sunset:Date) {
-        sendRequest(SetSunriseAndSunsetRequest(sunrise: sunrise, sunset: sunset))
+    func SetNortification(_ notfication:[NotificationSetting]) {
+        XCGLogger.default.debug("SetNortification")
+        sendRequest(SetNortificationRequest(settingArray: notfication))
+    }
+    
+    func SetNortification() {
+        var mNotificationSettingArray:[NotificationSetting] = []
+        let setting:NotificationSetting = NotificationSetting(type: NotificationType.call, clock: 12, color: "",colorName: "", states:true,packet:"com.apple.mobilephone",appName:"Call")
+        mNotificationSettingArray.append(setting)
+        sendRequest(SetNortificationRequest(settingArray: mNotificationSettingArray))
+    }
+    
+    func delay(seconds:Double, completion: @escaping ()-> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
     }
     
     /**
@@ -86,7 +156,6 @@ extension AppDelegate {
         sendRequest(GetStepsGoalRequest())
     }
     
-    
     func ReadBatteryLevel() {
         sendRequest(ReadBatteryLevelNevoRequest())
     }
@@ -121,7 +190,7 @@ extension AppDelegate {
      When the sync process is finished, le't refresh the date of sync
      */
     func syncFinished() {
-        let banner = MEDBanner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor(rgba:"#0dac67"))
+        let banner = MEDBanner(title: NSLocalizedString("sync_finished", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor("#0dac67"))
         banner.dismissesOnTap = true
         banner.show(duration: 1.5)
         lastSync = Date().timeIntervalSince1970
@@ -129,66 +198,31 @@ extension AppDelegate {
         userDefaults.set(Date().timeIntervalSince1970,forKey:LAST_SYNC_DATE_KEY)
         userDefaults.synchronize()
     }
-    
-    // MARK: - ConnectionController protocol
-    func  getFirmwareVersion() -> NSString{
-        return isConnected() ? self.getMconnectionController()!.getFirmwareVersion() : NSString()
-    }
-    
-    func  getSoftwareVersion() -> NSString{
-        return isConnected() ? self.getMconnectionController()!.getSoftwareVersion() : NSString()
-    }
-    
-    func getWatchNameInfo() -> [String:Int] {
-        return [self.getWatchName():self.getWactnID()];
-    }
-    
-    func getWatchModelInfo() -> [String:Int] {
-        return [self.getWatchModel():self.getWatchModelNumber()];
+        
+    func getWatchInfo() -> (watchName:String,watchId:Int) {
+        return (self.getWatchName(),self.getWatchID());
     }
     
     func setWatchInfo(_ id:Int,model:Int) {
         // id = 1-Nevo,2-Nevo Solar,3-Lunar,0xff-Nevo
-        UserDefaults.standard.set(id, forKey: "WATCHNAME_KEY")
-        UserDefaults.standard.synchronize()
+        XCGLogger.default.debug("setWatchInfo:id\(id),model:\(model)")
+        
+        self.setWatchID(id)
         switch id {
         case 1:
-            self.setWactnID(1)
             self.setWatchName("Nevo")
             break
         case 2:
-            self.setWactnID(2)
             self.setWatchName("Nevo Solar")
             break
         case 3:
-            self.setWactnID(3)
             self.setWatchName("Lunar")
             break
         default:
-            self.setWactnID(1)
             self.setWatchName("Nevo")
             break
         }
-        
         //model = 1 - Paris,2 - New York,3 - ShangHai
-        switch model {
-        case 1:
-            self.setWatchModelNumber(1)
-            self.setWatchModel("Paris")
-            break
-        case 2:
-            self.setWatchModelNumber(2)
-            self.setWatchModel("New York")
-            break
-        case 3:
-            self.setWatchModelNumber(3)
-            self.setWatchModel("ShangHai")
-            break
-        default:
-            self.setWatchModelNumber(1)
-            self.setWatchModel("Paris")
-            break
-        }
     }
     
     func connect() {
@@ -204,16 +238,18 @@ extension AppDelegate {
     }
     
     func hasSavedAddress()->Bool {
-        return self.getMconnectionController()!.hasSavedAddress()
-    }
-    
-    func restoreSavedAddress() {
-        self.getMconnectionController()?.restoreSavedAddress()
+        if let value = self.getMconnectionController() {
+            return value.hasSavedAddress()
+        }else{
+            return false
+        }
     }
     
     func isConnected() -> Bool{
-        return self.getMconnectionController()!.isConnected()
-        
+        if let value = self.getMconnectionController() {
+            return value.isConnected()
+        }
+        return false;
     }
     
     func sendRequest(_ r:Request) {
@@ -228,18 +264,43 @@ extension AppDelegate {
         }
     }
     
+    func connectedBanner() {
+        if(self.hasSavedAddress()){
+            let banner = MEDBanner(title: NSLocalizedString("Connected", comment: ""), subtitle: nil, image: nil, backgroundColor:UIColor("#0dac67"))
+            banner.dismissesOnTap = true
+            banner.show(duration: 1.5)
+        }
+    }
+    
+    func disConnectedBanner() {
+        if(self.hasSavedAddress()){
+            let banner = MEDBanner(title: NSLocalizedString("Disconnected", comment: ""), subtitle: nil, image: nil, backgroundColor: UIColor.red)
+            banner.dismissesOnTap = true
+            banner.show(duration: 1.5)
+        }
+    }
+    
+    /**
+     获取当前手机网络状态
+     
+     - returns: true->网络联通,false->网络不通
+     */
+    func getNetworkState()->Bool {
+        if let networks = network {
+            return networks.isReachable
+        }else{
+            return false;
+        }
+    }
+}
+
+// MARK: - 调整 App 的启动逻辑
+extension AppDelegate {
     func adjustLaunchLogic() {
-        
-//        let user:NSArray = UserProfile.getAll()
-//        let hasUser:Bool = user.count > 0
-        
         let hasWatch:Bool = AppDelegate.getAppDelegate().hasSavedAddress()
-        
         let isFirsttimeLaunch = AppDelegate.getAppDelegate().isFirsttimeLaunch
-        
         if isFirsttimeLaunch {
             let naviController = UINavigationController(rootViewController: LoginController())
-//            naviController.isNavigationBarHidden = true
             AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
             AppDelegate.getAppDelegate().window?.rootViewController = naviController
             AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
@@ -253,10 +314,15 @@ extension AppDelegate {
             }
         }
         
-        /****🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹  TEST  🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹*****/
-//        AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
-//        AppDelegate.getAppDelegate().window?.rootViewController = SunriseSetController()
-//        AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
-        /*****🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹*****/
+        /// Alter the entry of app here when testing a single module.
+        /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+        #if DEBUG
+            
+            AppDelegate.getAppDelegate().window? = UIWindow(frame: UIScreen.main.bounds)
+            AppDelegate.getAppDelegate().window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            AppDelegate.getAppDelegate().window?.makeKeyAndVisible()
+        #endif
+        /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
     }
+    
 }

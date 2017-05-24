@@ -8,11 +8,12 @@
 
 import Foundation
 import XCGLogger
+import CoreBluetooth
 /*
 See ConnectionController
 🚧🚧🚧Backbone Class : Modify with care🚧🚧🚧
 */
-class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate {
+class ConnectionControllerImpl : NSObject {
     fileprivate var mNevoBT:NevoBT?
     fileprivate var mDelegate:ConnectionControllerDelegate?
 
@@ -46,18 +47,12 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
     fileprivate var mRetryTimer:Timer?
     
     /**
-    this parameter saved old BLE 's  address, when doing BLE OTA, the address has been changed to another one
-    so, after finisned BLE ota, must restore it to normal 's address
-    */
-    fileprivate var savedAddress:String?
-    
-    /**
     No initialisation outside of this class, this is a singleton
     */
     override init() {
         super.init()
-        
-        mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
+        let profile:Profile = NevoProfile()
+        mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: profile)
         setOTAMode(false,Disconnect:true)
     }
     
@@ -103,185 +98,6 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
 
     }
     
-    /**
-    See NevoBTDelegate
-    */
-    func bluetoothEnabled(_ enabled:Bool){
-        mDelegate?.bluetoothEnabled(enabled)
-    }
-
-    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!) {
-
-      
-        mDelegate?.connectionStateChanged(isConnected)
-       
-        
-        if (!isConnected) {
-            connect()
-        } else {
-            //Let's save this address
-            
-            if let address = fromAddress?.uuidString {
-                
-                let userDefaults = UserDefaults.standard;
-                
-                userDefaults.set(address,forKey:SAVED_ADDRESS_KEY)
-                
-                userDefaults.synchronize()
-                
-            }
-            
-        }
-        
-    }
-    
-    /**
-    See NevoBTDelegate
-    */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
-    {
-       mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
-    }
-
-    /**
-    Receiving the current device signal strength value
-
-    :param: number, Signal strength value
-    */
-    func receivedRSSIValue(_ number:NSNumber){
-        //AppTheme.DLog("Red RSSI Value:\(number)")
-        mDelegate?.receivedRSSIValue(number)
-    }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func disconnect() {
-        mNevoBT!.disconnect()
-        
-        mRetryTimer?.invalidate()
-        
-        mRetryTimer = nil
-    }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func forgetSavedAddress() {
-        
-        if hasSavedAddress() {
-            savedAddress = UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) as? String
-        }
-
-        UserDefaults.standard.removeObject(forKey: SAVED_ADDRESS_KEY);
-        UserDefaults.standard.synchronize()
-
-    }
-    /**
-    See ConnectionController protocol
-    */
-    func restoreSavedAddress() {
-        if( savedAddress != nil) {
-            let userDefaults = UserDefaults.standard;
-            userDefaults.set(savedAddress,forKey:SAVED_ADDRESS_KEY)
-            userDefaults.synchronize()
-        }
-    }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func isConnected() -> Bool {
-        return mNevoBT!.isConnected()
-    }
-    
-    /**
-    See ConnectionController protocol
-    */
-    
-    // 如果没有该key,返回false; 如果有该key,但值为空字符串,返回false
-    func hasSavedAddress() -> Bool {
-        
-        if let saved = UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) as? String {
-            return !saved.isEmpty
-        }
-        
-        return false
-    }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func sendRequest(_ request:Request) {
-        if(getOTAMode() && (request.getTargetProfile().CONTROL_SERVICE != NevoOTAModeProfile().CONTROL_SERVICE
-                        && request.getTargetProfile().CONTROL_SERVICE != NevoOTAControllerProfile().CONTROL_SERVICE))
-        {
-            XCGLogger.default.debug("ERROR ! The ConnectionController is in OTA mode, impossible to send a normal nevo request !")
-            
-        } else if (!getOTAMode() && request.getTargetProfile().CONTROL_SERVICE != NevoProfile().CONTROL_SERVICE) {
-            
-            XCGLogger.default.debug("ERROR ! The ConnectionController is NOT in OTA mode, impossible to send an OTA nevo request !")
-            
-        }
-        mNevoBT?.sendRequest(request)
-    }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func  getFirmwareVersion() -> NSString!
-    {
-        return mNevoBT?.getFirmwareVersion()!
-    }
-    
-    /**
-    See ConnectionController protocol
-    */
-    func  getSoftwareVersion() -> NSString!
-    {
-        return mNevoBT?.getSoftwareVersion()!
-    }
-    
-    
-    /**
-    See NevoBTDelegate
-    */
-    func packetReceived(_ packet:RawPacket, fromAddress : UUID) {
-        mDelegate?.packetReceived(packet)
-    }
-
-    func scanAndConnect(){
-        mDelegate?.scanAndConnect()
-    }
-    
-    /**
-    See ConnectionController
-    */
-    func setOTAMode(_ OTAMode:Bool,Disconnect:Bool) {
-        
-        //No need to change the mode if we are already in OTA Mode
-        if getOTAMode() == OTAMode {
-            return;
-        }
-        if Disconnect
-        {
-           //cancel reconnect timer, make sure OTA can do connect by OTAcontroller
-           disconnect()
-        }
-        
-        //We don't set the profile on the NevoBT, because it could create too many issues
-        //So we destroy the previous instance and recreate one
-        if(OTAMode) {
-            if Disconnect
-            { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoOTAModeProfile())}
-            else
-            { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoOTAControllerProfile())}
-        } else {
-            mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoProfile())
-        }
-
-    }
-    
     fileprivate func initRetryTimer() {
         if mRetryTimer != nil {
             //If we already have initialised it, no need to continue
@@ -291,7 +107,6 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         mScanProcedureStatus = 0
         
         mRetryTimer = Timer.scheduledTimer(timeInterval: SCAN_PROCEDURE[mScanProcedureStatus], target: self, selector:#selector(retryTimer), userInfo: nil, repeats: false)
-        
     }
     
     func retryTimer() {
@@ -301,22 +116,16 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         if isConnected() {
             //We are connected, so we'll run this rety time in 1 sec, to see if it is still the case
             //This corresponds to the status "0" of the procedure
-            
             mScanProcedureStatus = 0
-
         } else {
-            
             //We are currently not connected. First, let's try to connect
             connect()
-            
             //Then, let's reschedule a retry, to do so, let's increase the procedure status
             mScanProcedureStatus += 1
-            
+
             //The retry status is an index on the SCAN_PROCEDURE, so we can't have it too long (array out of bound etc...)
             if mScanProcedureStatus >= SCAN_PROCEDURE.count {
-                
                mScanProcedureStatus = SCAN_PROCEDURE.count - 1
-                
             }
             
             XCGLogger.default.debug("Connection lost detected ! Retrying in : \(self.SCAN_PROCEDURE[self.mScanProcedureStatus])")
@@ -336,6 +145,149 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         }
         return false
     }
+}
+
+// MARK: - NevoBTDelegate
+extension ConnectionControllerImpl:NevoBTDelegate {
+
+    func bluetoothEnabled(_ enabled:Bool){
+        mDelegate?.bluetoothEnabled(enabled)
+    }
+    
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool) {
+        mDelegate?.connectionStateChanged(isConnected, fromAddress : fromAddress,isFirstPair:isFirstPair)
+        if (!isConnected) {
+            connect()
+        } else {
+            mNevoBT?.stopScan()
+            //Let's save this address
+            if let address = fromAddress?.uuidString {
+                self.savedWatchAddress(address)
+            }
+        }
+    }
+    
+    /**
+     See NevoBTDelegate
+     */
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int) {
+        mDelegate?.firmwareVersionReceived(whichfirmware, version: version)
+    }
+    
+    /**
+     Receiving the current device signal strength value
+     
+     :param: number, Signal strength value
+     */
+    func receivedRSSIValue(_ number:NSNumber){
+        //AppTheme.DLog("Red RSSI Value:\(number)")
+        mDelegate?.receivedRSSIValue(number)
+    }
+    
+    /**
+     See NevoBTDelegate
+     */
+    func packetReceived(_ packet:RawPacket, fromAddress : UUID) {
+        mDelegate?.packetReceived(packet)
+    }
+    
+    func scanAndConnect(){
+        mDelegate?.scanAndConnect()
+    }
+}
+
+// MARK: - mNevoBT
+extension ConnectionControllerImpl:ConnectionController {
+    func stopScan(){
+        mNevoBT?.stopScan()
+    }
+    /**
+     See ConnectionController protocol
+     */
+    func disconnect() {
+        mNevoBT?.disconnect()
+        
+        mRetryTimer?.invalidate()
+        
+        mRetryTimer = nil
+    }
+    
+    /**
+     See ConnectionController protocol
+     */
+    func forgetSavedAddress() {
+        if hasSavedAddress() {
+            UserDefaults.standard.removeObject(forKey: SAVED_ADDRESS_KEY);
+            UserDefaults.standard.synchronize()
+        }
+    }
+    /**
+     See ConnectionController protocol
+     */
+    func savedWatchAddress(_ uuidString:String) {
+        let userDefaults = UserDefaults.standard;
+        if userDefaults.object(forKey: SAVED_ADDRESS_KEY) == nil {
+            userDefaults.set(uuidString,forKey:SAVED_ADDRESS_KEY)
+            userDefaults.synchronize()
+        }
+    }
+    
+    /**
+     See ConnectionController protocol
+     */
+    func isConnected() -> Bool {
+        return mNevoBT!.isConnected()
+    }
+    
+    /**
+     See ConnectionController protocol
+     */
+    
+    // 如果没有该key,返回false; 如果有该key,但值为空字符串,返回false
+    func hasSavedAddress() -> Bool {
+        
+        if UserDefaults.standard.object(forKey: SAVED_ADDRESS_KEY) != nil {
+            return true
+        }
+        return false
+    }
+    
+    /**
+     See ConnectionController
+     */
+    func setOTAMode(_ OTAMode:Bool,Disconnect:Bool) {
+        
+        //No need to change the mode if we are already in OTA Mode
+        if getOTAMode() == OTAMode {
+            return;
+        }
+        if Disconnect
+        {
+            //cancel reconnect timer, make sure OTA can do connect by OTAcontroller
+            disconnect()
+        }
+        
+        //We don't set the profile on the NevoBT, because it could create too many issues
+        //So we destroy the previous instance and recreate one
+        if(OTAMode) {
+            let profile:Profile = NevoOTAModeProfile()
+            if Disconnect
+            { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: profile)}
+            else
+            { mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: NevoOTAControllerProfile())}
+        } else {
+            let profile:Profile = NevoProfile()
+            mNevoBT = NevoBTImpl(externalDelegate: self, acceptableDevice: profile)
+        }
+        
+    }
+
+    /**
+     See ConnectionController protocol
+     */
+    func sendRequest(_ request:Request) {
+        mNevoBT?.sendRequest(request)
+    }
     
     func isBluetoothEnabled() -> Bool {
         if let enabled = mNevoBT?.isBluetoothEnabled() {
@@ -352,4 +304,7 @@ class ConnectionControllerImpl : NSObject, ConnectionController, NevoBTDelegate 
         return profile!
     }
     
+    func getBLECentralManager() -> CBCentralManager? {
+        return mNevoBT?.getBLECentralManager()
+    }
 }

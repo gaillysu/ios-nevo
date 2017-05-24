@@ -25,22 +25,15 @@ class TutorialSevenViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        styleEvolve()
+        
     }
-    @IBAction func tryAgainAction(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
-    }
-}
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-extension TutorialSevenViewController {
-    fileprivate func styleEvolve() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.backgroundColor = UIColor.clear
-            titleLabel.textColor = UIColor.white
-            detailLabel.backgroundColor = UIColor.clear
-            detailLabel.textColor = UIColor.white
-            tryAgainButton.backgroundColor = UIColor.getBaseColor()
-        }
+    }
+    
+    @IBAction func tryAgainAction(_ sender: AnyObject) {
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }

@@ -53,7 +53,7 @@ class OTAProgress: CAShapeLayer {
     */
     fileprivate func DegreesToRadians(_ degrees:CGFloat) -> CGFloat {
 
-        return (degrees * CGFloat(M_PI))/180.0;
+        return (degrees * CGFloat(Double.pi))/180.0;
     }
 
     /**
@@ -64,7 +64,7 @@ class OTAProgress: CAShapeLayer {
     func drawPathWithArcCenter()->CGPath{
         let position_y:CGFloat = self.frame.size.height/2.0
         let position_x:CGFloat = self.frame.size.width/2.0
-        let path:CGPath = UIBezierPath(arcCenter: CGPoint(x: position_x, y: position_y), radius: position_y, startAngle: CGFloat(-M_PI/90), endAngle: CGFloat(4*M_PI/2), clockwise: true).cgPath
+        let path:CGPath = UIBezierPath(arcCenter: CGPoint(x: position_x, y: position_y), radius: position_y, startAngle: CGFloat(-M_PI/90), endAngle: CGFloat(4*Double.pi/2), clockwise: true).cgPath
         return path
     }
 
@@ -80,22 +80,7 @@ class OTAProgress: CAShapeLayer {
         self.progressLayer.strokeEnd = self.percent
         startAnimation();
     }
-
-    /**
-    Is the latest edition of the display function
-
-    :param: string
-    */
-    func setLatestVersion(_ string:String){
-        //valueLabel.text = string
-        //valueLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 23)
-    }
-
-    /**
-    Set the background color of the progress bar
-
-    :param: mProgressColor The current progress
-    */
+ 
     func setProgressColor(_ mProgressColor:UIColor) {
         progressColor = mProgressColor
         self.progressLayer.strokeColor = progressColor.cgColor;
@@ -186,7 +171,7 @@ class NevoOtaView: UIView {
         OTAprogressView?.setProgress(progresValue)
         progresLabel.text = String(format: "%.0f%c", progresValue*100,37)
         if progressString == nil {
-            messageLabel.text = NSLocalizedString("Updating", comment: "") + " \(progressString) " + "(\(currentTask)/\(allTask))"
+            messageLabel.text = NSLocalizedString("Updating", comment: "") + " \(String(describing: progressString)) " + "(\(currentTask)/\(allTask))"
         }else{
             messageLabel.text = progressString!
         }
@@ -198,19 +183,6 @@ class NevoOtaView: UIView {
         }else{
             OTAprogressView!.isHidden = true
         }
-    }
-
-    /**
-    Is the latest edition of the display function
-
-    :param: string
-    */
-    func setLatestVersion(_ string:String){
-        let messageS:String  = string
-        //taskLabel.font = AppTheme.FONT_RALEWAY_LIGHT(mSize: 15)
-        //let labelframe:CGRect  = AppTheme.getWidthLabelSize(messageS, andObject: taskLabel.frame,andFont: AppTheme.FONT_RALEWAY_LIGHT(mSize: 15))
-        //taskLabel.frame = labelframe
-        //taskLabel.text = string
     }
 
     /**

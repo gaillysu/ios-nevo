@@ -7,24 +7,44 @@
 //
 
 import UIKit
+import RealmSwift
+
+public enum HexColorError : Swift.Error {
+    case isNotColor,  //在Nevo下面返回的错误
+    isNotValueNull    //获取颜色的时候属性值是空的
+}
 
 class NotificationSetting: NSObject {
     fileprivate var mStates:Bool = true
     fileprivate let mType:NotificationType
     fileprivate var mClock:Int = 0
     fileprivate var mColor:NSNumber = 0
+    fileprivate var mPacket:String = ""
+    fileprivate var mAppName:String = ""
+    fileprivate var hexColor:String  = ""
+    fileprivate var lunarColorName: String = ""
+    
     var typeName:String {
         get {
             return self.mType.rawValue as String
         }
     }
     
-    init(type:NotificationType, clock:Int , color:NSNumber,states:Bool){
+    init(type:NotificationType, clock:Int , color:String?,colorName: String?,states:Bool, packet:String, appName:String){
         mType = type
         super.init()
         mClock = clock
         mColor = NSNumber(value: self.replaceColor(clock) as UInt32)
         mStates = states
+        mPacket = packet
+        mAppName = appName
+        if colorName != nil {
+            lunarColorName = colorName!
+        }
+        
+        if color != nil {
+            hexColor = color!
+        }
     }
 
     fileprivate func replaceColor(_ clock:Int)->UInt32{
@@ -85,6 +105,22 @@ class NotificationSetting: NSObject {
     func setStates(_ states:Bool) {
         mStates = states
     }
+    
+    func setPacket(_ packet:String) {
+        mPacket = packet
+    }
+    
+    func setAppName(_ name:String) {
+        mAppName = name
+    }
+    
+    func getAppName() -> String {
+        return mAppName
+    }
+    
+    func getPacket()->String {
+        return mPacket
+    }
     /**
     get the type of setting
     
@@ -112,7 +148,43 @@ class NotificationSetting: NSObject {
         default:
             ledColor = ""
         }
+        
         return ledColor
+    }
+    
+    func getHexColor() -> String{
+        var ledColor:String
+        switch mClock {
+        case 2:
+            ledColor = UIColor.red.hexString(false)
+        case 4:
+            ledColor = UIColor.blue.hexString(false)
+        case 6:
+            ledColor = "#90EE90"
+        case 8:
+            ledColor = UIColor.yellow.hexString(false)
+        case 10 :
+            ledColor = UIColor.orange.hexString(false)
+        case 12:
+            ledColor = UIColor.green.hexString(false)
+        default:
+            ledColor = ""
+        }
+        return ledColor
+    }
+    
+    func getLunarColorName()->String {
+        let realm = try! Realm()
+        let medNotification = realm.objects(MEDUserNotification.self).filter("appid = '\(self.mPacket)'").first
+        if let name = medNotification?.colorItem()?.name {
+            return name
+        }
+        
+        if lunarColorName != "" {
+            return lunarColorName
+        } else {
+            return "nameless"
+        }
     }
 }
 
@@ -124,6 +196,6 @@ enum NotificationType:NSString {
     case calendar = "Calendar"
     case wechat = "WeChat"
     case whatsapp = "Whatsapp"
-    
-    static let allValues:[NotificationType] = [call, sms, email, facebook, calendar, wechat, whatsapp]
+    case other = "Other"
+    static let allValues:[NotificationType] = [call, sms, email, facebook, calendar, wechat, whatsapp,other]
 }

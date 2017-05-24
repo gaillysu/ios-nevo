@@ -48,36 +48,12 @@ class ProfileSetupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.checkBox.checkState = .checked
+        
         self.navigationItem.title = NSLocalizedString("Register", comment: "")
         let leftButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel_lunar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftCancelAction(_:)))
         self.navigationItem.leftBarButtonItem = leftButton
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            self.view.backgroundColor = UIColor.getGreyColor()
-            signupLabel.textColor = UIColor.white
-            email.backgroundColor = UIColor.getLightBaseColor()
-            email.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
-            firstNameTextField.backgroundColor = UIColor.getLightBaseColor()
-            firstNameTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
-            lastNameTextField.backgroundColor = UIColor.getLightBaseColor()
-            lastNameTextField.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
-            password.backgroundColor = UIColor.getLightBaseColor()
-            password.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
-            retypePassword.backgroundColor = UIColor.getLightBaseColor()
-            retypePassword.setValue(UIColor.white, forKeyPath: "placeholderLabel.textColor")
-            termsLabel.textColor = UIColor.getBaseColor()
-            agreeLabel.textColor = UIColor.white
-            checkBox.tintColor = UIColor.getBaseColor()
-            checkBox.setValue(UIColor.getBaseColor(), forKeyPath: "secondaryTintColor")
-            checkBox.setValue(UIColor.getBaseColor(), forKeyPath: "secondaryCheckmarkTintColor")
-            submitButton.backgroundColor = UIColor.getBaseColor()
-            
-            email.textColor = UIColor.white
-            firstNameTextField.textColor = UIColor.white
-            lastNameTextField.textColor = UIColor.white
-            password.textColor = UIColor.white
-            retypePassword.textColor = UIColor.white
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,9 +61,12 @@ class ProfileSetupViewController: UIViewController {
         
         navigationItem.title = nil
         navigationController?.navigationBar.lt_setBackgroundColor(UIColor.clear)
-        if let view = findBottomLineView(inView: navigationController?.navigationBar) {
-            view.isHidden = true
-        }
+        
+        navigationController?.navigationBar.subviewsSatisfy(theCondition: { (v) -> (Bool) in
+            return v.frame.height == 0.5
+            }, do: { (v) in
+                v.isHidden = true
+        })
     }
     
     func leftCancelAction(_ sender:UIBarButtonItem) {
@@ -125,7 +104,7 @@ class ProfileSetupViewController: UIViewController {
                 } else {
                     let infoDict:[String:String] = ["email":email!.text!,"first_name":firstNameTextField!.text!,"last_name":lastNameTextField!.text!,"password":password.text!]
                     let infomation:InformationController = InformationController()
-                    infomation.registerInfor = infoDict
+                    infomation.registerInfo = infoDict
                     self.navigationController?.pushViewController(infomation, animated: true)
                 }
             }
@@ -163,27 +142,5 @@ class ProfileSetupViewController: UIViewController {
         }
         
         return true
-    }
-}
-
-
-// MARK: - SYSTEM CALLBACK
-extension ProfileSetupViewController {
-    func findBottomLineView(inView:UIView?) -> UIView? {
-        if inView?.frame.height == 0.5 {
-            return inView
-        }
-        
-        if inView?.subviews.count == 0 {
-            return nil
-        }
-        
-        for subView in (inView?.subviews)! {
-            if let result = findBottomLineView(inView: subView) {
-                print("=====================\r\n")
-                return result
-            }
-        }
-        return nil
     }
 }

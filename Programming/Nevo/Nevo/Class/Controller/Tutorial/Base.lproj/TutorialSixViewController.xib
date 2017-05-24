@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialSixViewController">
             <connections>
+                <outlet property="imageView" destination="58E-1z-a9k" id="heA-vK-QZq"/>
                 <outlet property="tapToContinueButton" destination="Lk4-Tf-XDL" id="7rr-De-vXv"/>
                 <outlet property="titleLabel" destination="doG-bJ-q3v" id="dLq-gX-34J"/>
                 <outlet property="view" destination="skn-7I-1ge" id="sUI-yC-ewk"/>
@@ -24,11 +28,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="doG-bJ-q3v">
+                    <rect key="frame" x="55" y="75" width="265" height="46"/>
                     <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="39"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lk4-Tf-XDL">
+                    <rect key="frame" x="55" y="572" width="265" height="40"/>
                     <color key="backgroundColor" red="0.62745098039215685" green="0.51764705882352935" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="pEB-Tk-e0D"/>
@@ -47,6 +53,7 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="connected.png" translatesAutoresizingMaskIntoConstraints="NO" id="58E-1z-a9k">
+                    <rect key="frame" x="46.5" y="192.5" width="282" height="282"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="58E-1z-a9k" secondAttribute="height" multiplier="1:1" id="5Jx-Bu-T2R"/>
                     </constraints>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SelectedNotificationView: UITableView {
 
@@ -14,7 +15,7 @@ class SelectedNotificationView: UITableView {
         
     }
 
-    func getNotificationClockCell(_ indexPath:IndexPath, tableView:UITableView, title:String, clockIndex: Int)->UITableViewCell {
+    func getNotificationClockCell(_ indexPath:IndexPath, tableView:UITableView, image:UIImage?, clockIndex: Int)->UITableViewCell {
         let endCellID:NSString = "NotificationClockCell"
         var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID as String) as? NotificationClockCell
 
@@ -34,15 +35,15 @@ class SelectedNotificationView: UITableView {
 
     func getLineColorCell(_ indexPath:IndexPath,tableView:UITableView,cellTitle:String,clockIndex:Int)->UITableViewCell{
         let endCell:LineColorCell = tableView.dequeueReusableCell(withIdentifier: "LineColor_Identifier" ,for: indexPath) as! LineColorCell
-        endCell.imageName.image = UIImage(named: "notifications_check")
-        endCell.imageName.isHidden = true
         endCell.imageView?.image = UIImage(named: cellTitle)
-        if((clockIndex/2 - 1) == (indexPath as NSIndexPath).row){
-            endCell.imageName.isHidden = false
+        if((clockIndex/2 - 1) == indexPath.row){
+            let image = UIImage(named: "notifications_check")
+            endCell.accessoryView = UIImageView(image: image)
+        }else{
+            endCell.accessoryView = nil;
         }
         
-        endCell.textLabel!.text = cellTitle
-        endCell.textLabel!.backgroundColor = UIColor.clear
+        endCell.textLabel!.text = cellTitle;
         return endCell
     }
 
@@ -55,31 +56,15 @@ class SelectedNotificationView: UITableView {
 
      :returns: return LinkLoss Notifications TableViewCell
      */
-    func AllowNotificationsTableViewCell(_ indexPath:IndexPath, tableView:UITableView, title:String, state:Bool)->UITableViewCell {
-        let endCellID:String = "AllowNotificationsTableViewCell"
-        var endCell = tableView.dequeueReusableCell(withIdentifier: endCellID)
-        if (endCell == nil) {
-            endCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: endCellID)
-            let mSwitch:UISwitch = UISwitch(frame: CGRect(x: 0,y: 0,width: 51,height: 31))
-            mSwitch.isOn = state
-            mSwitch.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            mSwitch.onTintColor = AppTheme.NEVO_SOLAR_YELLOW()
-            mSwitch.center = CGPoint(x: UIScreen.main.bounds.size.width-40, y: (endCell?.contentView.frame.height)!/2)
-            endCell?.contentView.addSubview(mSwitch)
-        }
-        for view in endCell!.contentView.subviews{
-            if(view.isKind(of: UISwitch.classForCoder())){
-                let mSwitch:UISwitch = view as! UISwitch
-                mSwitch.isOn = state
-            }
-        }
-        endCell?.selectionStyle = UITableViewCellSelectionStyle.none;
-        endCell?.textLabel?.text = title
-        
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            endCell?.textLabel?.textColor = UIColor.white
-        }
-        return endCell!
+    func allowNotificationsTableViewCell(_ indexPath:IndexPath, tableView:UITableView, title:String, setting:NotificationSetting)->UITableViewCell {
+        let allowCell:AllowNotificationsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AllowNotifications_Identifier", for: indexPath) as! AllowNotificationsTableViewCell
+        allowCell.selectionStyle = UITableViewCellSelectionStyle.none;
+        let titleColor:UIColor = UIColor.black
+        let onColor:UIColor = AppTheme.NEVO_SOLAR_YELLOW()
+        allowCell.setAllowSwitch(color: onColor,isOn:setting.getStates())
+        allowCell.setTitleLabel(title: title, titleColor: titleColor, titleFont: nil)
+
+        return allowCell
     }
     /*
     // Only override drawRect: if you perform custom drawing.

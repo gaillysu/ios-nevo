@@ -18,15 +18,15 @@ protocol Profile {
     /**
     The control Service is a GATT service that contains several charactersitics
     */
-    var CONTROL_SERVICE : CBUUID { get }
+    var CONTROL_SERVICE : [CBUUID] { get }
     
     /**
     The control characteristic receives requests as a write without response command
     */
-    var CONTROL_CHARACTERISTIC : CBUUID { get }
+    var CONTROL_CHARACTERISTIC : [CBUUID] { get }
     
     /**
     The callback characterisitc is notified of the device's response
     */
-    var CALLBACK_CHARACTERISTIC : CBUUID { get }
+    var CALLBACK_CHARACTERISTIC : [CBUUID] { get }
 }

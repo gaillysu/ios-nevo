@@ -7,6 +7,8 @@
  */
 "Cancel"="Abbrechen";
 "Enter"="Eingeben";
+"Yes"="Yes";
+"No"="No";
 "Notifications"="Benachrichtigungen";
 "My nevo"="Mein Nevo";
 "UpdateSuccess1"="Aktualisierung erfolgreich";
@@ -26,18 +28,12 @@
 
 //new app string
 "goal"="Ziel";
-"you_reached"="Schritte";
-"progress"="Fortschritt";
-"day_steps_goal"="Ziel";
 "no_step_data"="Keine Daten zu den Schritten";
 "no_sleep_data"="Keine Schlaf Tracking-Daten";
-"select_date"="Ein Datum wählen";
-"sleep_duration"="Schlafdauer";
 "Deep_sleep"="Tiefschlaf";
 "light_sleep"="leichter Schlaf";
 "sleep_timer"="Schlafzeit";
 "wake_timer"="Wachzeit";
-"wake_duration"="Dauer der Wachzeit";
 "CALL"="Anruf";
 "SMS"="(i) Nachricht";
 "EMAIL"="E-Mail";
@@ -48,7 +44,6 @@
 "Setting"="Einstellungen";
 "find_my_watch"="Meine Uhr finden";
 "goals"="Ziele";
-"last_night"="Letzte Nacht";
 "history"="Verlauf";
 "forget_watch"="Uhr vergessen";
 "Support"="Unterstützung";
@@ -60,9 +55,7 @@
 "YELLOW"="Gelb";
 "ORANGE"="Orange";
 "GREEN"="Grün";
-"no_data"="Keine Daten";
 "nevo_is_not_connected"="Nevo ist nicht angeschlossen.";
-"did_sleep_with_your_nevo"="Sie hatten Nevo beim Schlafen nicht bei sich.";
 "search_for_nevo"="Nach Nevo suchen";
 "bluetooth_turned_off_enable"="Bluetooth ausgeschaltet. Bluetooth aktivieren zum Synchronisieren";
 "syncing_Alarm"="Synchronisier-Alarm";
@@ -76,7 +69,6 @@
 "battery_sufficient"="Batterie ausreichend";
 "battery_full"="Batterie geladen";
 "alarmTitle"="Alarm";
-"sleepTitle"="Schlaf";
 "set_goal"="Ziel setzen";
 "today"="Heute";
 "syncing_data"="Synchronisieren von Daten";
@@ -84,12 +76,10 @@
 "Repeat"="Wiederholen";
 "Label"="Bezeichnung";
 "watch_version"="Uhren-Version";
-"battery"="Batterie";
 "app_version"="App-Version";
 "forget"="Vergessen";
 "forget_your_nevo"="Wollen Sie Ihren Nevo vergessen?";
 "Link-Loss Notifications"="Link-Loss Warning";
-"nevo_alarms_supports"="Nevo unterstützt jetzt nur 3 Alarme.";
 "press_the_third_button"="Drücken Sie den dritten Knopf";
 "in_order_reactivate_bluetooth"="Um Bluetooth wieder zu aktivieren. Diesen Bildschirm nicht verlassen!";
 "do_not_exit_this_screen"="Diesen Bildschirm nicht verlassen!";
@@ -108,11 +98,12 @@
 "ACTIVE_NOTIFICATIONS"="ACTIVE NOTIFICATIONS";
 "INACTIVE_NOTIFICATIONS"="INACTIVE NOTIFICATIONS";
 "Allow_Notifications"="Allow Notifications";
+// Lunar's new notification
+"Allow_Notifications_Lunar"="Allow buzzing";
 "syncing_data"="Syncing data";
 "sync_finished"="Sync finished";
 "Update"="Update";
 "Add"="Add";
-"no_alarm_content"="You don’t have any alarm set. Set an alarm by tapping on the plus button in the upper right corner.";
 "An_update_is_available_for_your_watch"="An update is available for your watch.";
 "goal_must_bigger_1000"="Goal must be bigger than 1000.";
 //new Nevo
@@ -120,13 +111,13 @@
 "signup_failed"="Your Signup Failed";
 "user_exist"="User already exist";
 "access_denied"="Your authorization token error";
-"forget_your_password"="Do you want to forget your Password?";
+"forget_your_password"="Did you forget your password?";
 "login_success"="Login Successful";
 "login_error"="User does not exist or password is wrong.";
 "Logout_error"="Logout error";
 "CALORIE"="CALORIE";
 "STEPS"="STEPS";
-"TIME"="TIME";
+"TIME"="Active Time";
 "KM"="KM";
 "timer_on_battery"="Time on Battery";
 "timer_on_solar"="Time on Solar";
@@ -186,6 +177,7 @@
 "Password has been changed"="Password has been changed";
 "Please enter a new password"="Please enter a new password";
 "Are you sure you want to log out?"="Are you sure you want to log out?";
+"DeleteNotificationWarning"="Are you sure you want to delete the notification?";
 
 // 2016-10-17
 "no_network"="There seems to be some problems with your network";
@@ -203,13 +195,62 @@
 
 // 2016-10-27
 "Choose picture source"="Choose picture source";
-"Choose from library"="Choose from library";
-"Choose from Camera"="Choose from Camera";
+"Choose from library"="Choose photo";
+"Choose from Camera"="Take photo";
 
 "move_&_zoom"="Move & Zoom";
 "Yesterday"="Yesterday";
+"tomorrow" = "Tomorrow";
 
 "tips_content_lunar"="Tips:\nSleep alarm allows you set a timer that your LunaR can automatic turn on sleep mode.";
 
 // 2016-10-28
 "Delete"="Delete";
+"ota_error_signature_mismatch"="Signature mismatch";
+//2016-11-14
+"sign_up"="Sign Up";
+
+// 2016-11-14
+"Edit goal"="Edit goal";
+"set_city"="Set city";
+"world_clock"="Worldclock";
+"Home_City" = "Home City";
+"locating_city" = "Located City";
+"all_city" = "All Cities";
+"Choose_home_city" = "Choose your home city";
+"none_homecity" = "You haven't chosen your home city yet, click the button in the upper right corner to add one!";
+
+// Notification Color
+"color"="Color";
+"other_settings"="Other settings";
+"unit"="Unit";
+"metrics"="Metrics";
+"imperial"="Imperial";
+"local_time" = "Local Time";
+"home_time" = "Home Time";
+"home_time2" = "Home Time";
+
+// Dashboard of LunaR
+"harvest_status" = "HARVESTING";
+"charging" = "CHARGING";
+"sunrise" = "SUNRISE";
+"sunset" = "SUNSET";
+"hometime" = "HOME TIME";
+"calories_burned" = "CALORIES BURNED";
+"of_goal" = "OF GOAL";
+"inactivity" = "INACTIVITY";
+"activity" = "ACTIVITY";
+"steps_taken" = "STEPS TAKEN";
+"update_available" = "VERSION_NUMBER is available";
+"home_local" = "Watch digital time";
+"failed_locate" = "Failed to locate";
+"locating" = "Locating...";
+"Calculating" = "Calculating...";
+"tap_to" = "Tap To";
+"Select_city" = "select a city";
+"nosolar"="No sun!";
+"none_alarm" = "You don’t have any alarm set. Set an alarm by tapping on the plus button in the upper right corner.";
+"nevo_alarms_limit" = "Nevo supports only 3 alarms on for now.";
+"lunar_alarms_limit" = "LunaR supports only 7 wake and 7 sleep alarms on for now.";
+
+"Distance"="Distance";

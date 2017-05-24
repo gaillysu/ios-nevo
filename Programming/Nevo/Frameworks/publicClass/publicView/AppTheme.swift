@@ -11,6 +11,13 @@ import AudioToolbox
 import RegexKitLite
 import XCGLogger
 
+let buildin_firmware_version = AppTheme.GET_FIRMWARE_VERSION();
+let buildin_software_version = AppTheme.GET_SOFTWARE_VERSION();
+
+enum ActionType {
+    case get
+    case set
+}
 /**
 This class holds all app-wide constants.
 Colors, fonts etc...
@@ -21,21 +28,18 @@ class AppTheme {
     sRGB value : #ff9933
     */
     class func NEVO_SOLAR_YELLOW() -> UIColor {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            return UIColor.getBaseColor()
-        }
         
-        return UIColor(rgba: "#A08455")
+        return UIColor("#A08455")
     }
 
     class func NEVO_SOLAR_GRAY() -> UIColor {
         
-        return UIColor(rgba: "#E5E4E2")
+        return UIColor("#E5E4E2")
     }
     
     class func NEVO_SOLAR_DARK_GRAY() -> UIColor {
         
-        return UIColor(rgba: "#BCBCBC")
+        return UIColor("#BCBCBC")
     }
     
     /**
@@ -117,48 +121,34 @@ class AppTheme {
         return UIColor(red: 48/255.0, green: 48/255.0, blue: 48/255.0, alpha: 1)
     }
 
-    /**
-    *	@brief	The archive All current data
-    *
-    */
-    class func KeyedArchiverName(_ name:NSString,andObject object:AnyObject) ->Bool{
-        var objectArray:[AnyObject] = [object]
-        let senddate:Date = Date()
-        let dateformatter:DateFormatter = DateFormatter()
-
-        dateformatter.dateFormat = "YYYY/MM/dd"// HH:mm:ss
-        let locationString:NSString = dateformatter.string(from: senddate) as NSString
-        objectArray.append(locationString)
-        NSLog("locationString:%@",locationString);
-
-        let pathArray = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)
-        let Path:NSString = (pathArray as NSArray).object(at: 0) as! NSString
-
-        let filename:NSString = Path.appendingPathComponent(name as String) as NSString
-        let iswrite:Bool = NSKeyedArchiver.archiveRootObject(objectArray, toFile: filename as String)
-        return iswrite
+    class func KeyedArchiverName(_ name:String,andObject object:Any) -> Bool{
+        let pathArray = NSSearchPathForDirectoriesInDomains(.libraryDirectory,.userDomainMask,true)
+        let rootPath = pathArray[0].appending("/Caches/med_cache/")
+        let filePath = rootPath.appending("\(name).data")
+        if !FileManager.default.fileExists(atPath: rootPath) {
+            do {
+                try FileManager.default.createDirectory(atPath: rootPath, withIntermediateDirectories: true, attributes: nil)
+            } catch let error {
+                print("Archiver error:\(error)")
+            }
+        }
+        return NSKeyedArchiver.archiveRootObject(object, toFile: filePath)
     }
 
     /**
-     解档的数据是包含时间戳的数据数组,要获得原始数据需要自行转换,归档的数据类型都是以弱类型归档解档可自行转换
-     index 1 = time stamp  index 0 = data
-
-     :param: name Archiver Name
-
-     :returns: Archiver data
+     * 解档的数据是原始对象, 要获得原始数据需要自行转换
      */
-    class func LoadKeyedArchiverName(_ name:NSString) ->AnyObject{
-        let pathArray = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)
-        let Path:NSString = (pathArray as NSArray).object(at: 0) as! NSString
-
-        let filename:NSString = Path.appendingPathComponent(name as String) as NSString
-
-        let flierManager:Bool = FileManager.default.fileExists(atPath: filename as String)
-        if(flierManager){
-            let objectArr = NSKeyedUnarchiver.unarchiveObject(withFile: filename as String)!
-            return objectArr as AnyObject
+    class func LoadKeyedArchiverName(_ name:String) -> Any?{
+        
+        let pathArray = NSSearchPathForDirectoriesInDomains(.libraryDirectory,.userDomainMask,true)
+        let path = pathArray[0]
+        let filename = path.appending("/Caches/med_cache/\(name).data")
+        if FileManager.default.fileExists(atPath: filename) {
+            let objectArr = NSKeyedUnarchiver.unarchiveObject(withFile: filename)
+            return objectArr
         }
-        return [] as AnyObject
+        
+        return nil
     }
 
     /**
@@ -315,20 +305,21 @@ class AppTheme {
     class func GET_FIRMWARE_VERSION() ->Int
     {
         var buildinFirmwareVersion:Int  = 0
-        let fileArray = GET_FIRMWARE_FILES("Firmwares")
+        let fileArray:NSArray = GET_FIRMWARE_FILES("Firmwares")
+        
         for tmpfile in fileArray {
             let selectedFile:URL = tmpfile as! URL
             let fileName:NSString? = (selectedFile.path as NSString).lastPathComponent as NSString?
             let fileExtension:String? = selectedFile.pathExtension
 
-            if fileExtension == "hex"
-            {
+            if fileExtension == "hex" {
                 let ran:NSRange = fileName!.range(of: "_v")
                 let ran2:NSRange = fileName!.range(of: ".hex")
                 let string:String = fileName!.substring(with: NSRange(location: ran.location + ran.length,length: ran2.location-ran.location-ran.length))
                 buildinFirmwareVersion = Int(string)!
                 break
             }
+            
         }
 
         return buildinFirmwareVersion
@@ -441,5 +432,31 @@ class AppTheme {
             return String(format:"%d m",minutes)
         }
         return String(format:"%d h %d m",hours,minutes)
+    }
+    
+    //return 0->Metrics,1->imperial,default value = 0
+    class func getUserSelectedUnitValue()->Int {
+        if let row = MEDSettings.int(forKey: "UserSelectedUnit") {
+            return row
+        }else{
+            return 0
+        }
+    }
+    
+    class func realmISFirstCopy(findKey:ActionType)->Bool {
+        if findKey == .get {
+            if let value = UserDefaults.standard.object(forKey: "ISFirstCopy") {
+                let index:Bool = value as! Bool
+                return index
+            }else{
+                return false
+            }
+        }
+        
+        if findKey == .set {
+            UserDefaults.standard.set(true, forKey: "ISFirstCopy")
+            return true
+        }
+        return false
     }
 }

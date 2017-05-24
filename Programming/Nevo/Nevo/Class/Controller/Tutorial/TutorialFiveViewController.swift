@@ -29,7 +29,6 @@ class TutorialFiveViewController: UIViewController {
 
     override func viewDidLoad() {
         AppDelegate.getAppDelegate().connect()
-        styleEvolve()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +42,7 @@ class TutorialFiveViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
     }
 
@@ -53,7 +53,7 @@ class TutorialFiveViewController: UIViewController {
             action.isValid ? action.invalidate():()
             if(AppDelegate.getAppDelegate().isConnected()){
                 delay(1.0) {
-                    AppDelegate.getAppDelegate().restoreSavedAddress()
+                    AppDelegate.getAppDelegate().forgetSavedAddress()
                     let tutorialSix = TutorialSixViewController()
                     self.navigationController?.pushViewController(tutorialSix, animated: true)
                 }
@@ -62,7 +62,7 @@ class TutorialFiveViewController: UIViewController {
                 for nvc:UIViewController in self.navigationController!.viewControllers {
                     if(nvc.isKind(of: TutorialSevenViewController.classForCoder())) {
                         res = false
-                        self.navigationController?.popToViewController(nvc, animated: true)
+                        _ = self.navigationController?.popToViewController(nvc, animated: true)
                         return;
                     }
                 }
@@ -91,17 +91,4 @@ class TutorialFiveViewController: UIViewController {
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
 
-}
-
-extension TutorialFiveViewController {
-    fileprivate func styleEvolve() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.backgroundColor = UIColor.clear
-            titleLabel.textColor = UIColor.white
-            detailLabel.backgroundColor = UIColor.clear
-            detailLabel.textColor = UIColor.white
-            progressBar.backgroundColor = UIColor.clear
-        }
-    }
 }

@@ -21,30 +21,24 @@ class PresetTableViewCell: UITableViewCell,ButtonManagerCallBack {
 
     @IBAction func controllManager(_ sender: AnyObject) {
        delegate?.controllManager(sender)
+        
+        /// When switch is turned off, cell's color should be clear.
         if(presetStates.isOn){
-            if AppTheme.isTargetLunaR_OR_Nevo() {
-                self.backgroundColor = UIColor.white
-            } else {
-            }
-            
+            viewDefaultColorful()
         }else{
-            self.backgroundColor = UIColor.clear
+            backgroundColor = UIColor.clear
+            contentView.backgroundColor = UIColor.clear
         }
+        
+        separatorInset = .zero
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            separatorLineLabel.backgroundColor = UIColor.getLightBaseColor()
-        }
+        /// Theme adjust
+        presetSteps.viewDefaultColorful()
+        presetName.viewDefaultColorful()
+        presetStates.viewDefaultColorful()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 /*
 The connection controller handles all the high level connection related tasks
@@ -49,10 +50,10 @@ protocol ConnectionController {
     
     /**
     restore the saved address. BLE OTA use it
-    Usage:forgetSavedAddress()/restoreSavedAddress(), if not call forgetSavedAddress()
+    Usage:saved watch address
     before call it, do nothing
     */
-    func restoreSavedAddress()
+    func savedWatchAddress(_ uuidString:String)
     
     /**
     Tries to send a request, you can't be sure that it will effectively be sent
@@ -77,16 +78,8 @@ protocol ConnectionController {
     */
     func isBluetoothEnabled() -> Bool
     
-    /**
-    get Nevo 's ble firmware version
-    */
-    func  getFirmwareVersion() -> NSString!
-    
-    /**
-    get Nevo 's MCU software version
-    */
-    func  getSoftwareVersion() -> NSString!
-    
+    // BLE Manager bject
+    func getBLECentralManager() -> CBCentralManager?
 }
 
 protocol ConnectionControllerDelegate {
@@ -99,14 +92,14 @@ protocol ConnectionControllerDelegate {
     /**
     Called when a peripheral connects or disconnects
     */
-    func connectionStateChanged(_ isConnected : Bool)
+    func connectionStateChanged(_ isConnected : Bool, fromAddress : UUID!,isFirstPair:Bool)
     
     /**
     Call when finish reading Firmware
     @parameter whichfirmware, firmware type
     @parameter version, return the version
     */
-    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:NSString)
+    func firmwareVersionReceived(_ whichfirmware:DfuFirmwareTypes, version:Int)
 
     /**
     *  Receiving the current device signal strength value

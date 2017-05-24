@@ -26,28 +26,16 @@ class TutorialTwoViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        styleEvolve()
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-//            centerImageView.image = AppTheme.GET_RESOURCES_IMAGE("tutorial_lunar_2")
-        }
+
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
     }
     
     @IBAction func turnBluetoothOnAction(_ sender: AnyObject) {
         let tutorialTwo = TutorialThreeViewController()
         self.navigationController?.pushViewController(tutorialTwo, animated: true)
-    }
-}
-
-extension TutorialTwoViewController {
-    fileprivate func styleEvolve() {
-        if !AppTheme.isTargetLunaR_OR_Nevo() {
-            view.backgroundColor = UIColor.getGreyColor()
-            titleLabel.backgroundColor = UIColor.clear
-            titleLabel.textColor = UIColor.white
-            detailLabel.backgroundColor = UIColor.clear
-            detailLabel.textColor = UIColor.white
-            turnBluetoothOnButton.backgroundColor = UIColor.getBaseColor()
-            turnBluetoothOnButton.setTitleColor(UIColor.white, for: .normal)
-        }
     }
 }

@@ -12,7 +12,7 @@ class SolarInforViewCell: UICollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
-    @IBOutlet weak var labelWidth: NSLayoutConstraint!
+//    @IBOutlet weak var labelWidth: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +23,7 @@ class SolarInforViewCell: UICollectionViewCell {
         let contentDict:[String:AnyObject] = [NSFontAttributeName:titleLabel.font]
         titleLabel.text = labelText.capitalized(with: Locale.current)
         let statusLabelSize = labelText.size(attributes: contentDict)
-        labelWidth.constant = 115
+//        labelWidth.constant = 115
         layoutIfNeeded()
     }
 }

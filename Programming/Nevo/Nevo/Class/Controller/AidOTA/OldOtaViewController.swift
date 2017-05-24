@@ -10,7 +10,6 @@ import UIKit
 import XCGLogger
 import iOSDFULibrary
 import CoreBluetooth
-import PopupController
 
 class OldOtaViewController: UIViewController  {
 
@@ -23,7 +22,6 @@ class OldOtaViewController: UIViewController  {
     fileprivate var selectedFirmware : DFUFirmware?
     fileprivate var selectedFileURL  : URL?
     fileprivate var secureDFU        : Bool?
-    fileprivate var popupView:PopupController?
     
     override func viewDidLayoutSubviews(){
         //init the view
@@ -34,25 +32,16 @@ class OldOtaViewController: UIViewController  {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
         
-        let leftItem:UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"left_button") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(backAction(_:)))
+        AppDelegate.getAppDelegate().cleanUpBTManager()
+        
+        let leftItem:UIBarButtonItem = UIBarButtonItem(image:UIImage(named:"cancel_lunar") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(backAction(_:)))
         leftItem.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = leftItem
         
-        let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(scanAction(_:)))
+        let rightItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(scanAction(_:)))
         rightItem.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem = rightItem
-
-        let hud:MBProgressHUD = MBProgressHUD.showAdded(to: UIApplication.shared.windows.last, animated: true)
-        hud.detailsLabelText = "In the use of first aid mode, please forget all relevant Nevo pairing in the system Bluetooth settings"
-        hud.removeFromSuperViewOnHide = true;
-        hud.dimBackground = true;
-        hud.hide(true, afterDelay: 1.9)
         
-        let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-            
-            //popup.dismiss() // dismiss popup
-        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,6 +54,7 @@ class OldOtaViewController: UIViewController  {
         if dfuController != nil {
             dfuController?.abort()
         }
+        AppDelegate.getAppDelegate().setUpBTManager()
     }
     
     func backAction(_ sender:AnyObject) {
@@ -74,24 +64,8 @@ class OldOtaViewController: UIViewController  {
     func scanAction(_ sender:AnyObject) {
         let scannerController:ScannerViewController = ScannerViewController()
         scannerController.didDelegate = self
-        self.present(scannerController, animated: true, completion: nil)
-//
-//        popupView = PopupController
-//            .create(self)
-//            .customize(
-//                [
-//                    .animation(.fadeIn),
-//                    .scrollable(false),
-//                    .backgroundStyle(.blackFilter(alpha: 0.7))
-//                ]
-//            )
-//            .didShowHandler { popup in
-//                print("showed popup!")
-//            }
-//            .didCloseHandler { _ in
-//                print("closed popup!")
-//            }
-//            .show(scannerController) // show popup
+        self.navigationController?.pushViewController(scannerController, animated: true)
+        //self.present(scannerController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,78 +77,48 @@ class OldOtaViewController: UIViewController  {
 //MARK: - CBCentralManagerDelegate
 extension OldOtaViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        logWith(LogLevel.verbose, message: "UpdatetState: \(centralManager?.state.rawValue)")
+        logWith(LogLevel.verbose, message: "UpdatetState: \(String(describing: centralManager?.state.rawValue))")
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("Connected to peripheral: \(peripheral.name)")
+        print("Connected to peripheral: \(String(describing: peripheral.name))")
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("Disconnected from peripheral: \(peripheral.name)")
+        print("Disconnected from peripheral: \(String(describing: peripheral.name))")
     }
 
 }
 
 //MARK: - DFUServiceDelegate
 extension OldOtaViewController:DFUServiceDelegate {
-    func didStateChangedTo(_ state:DFUState) {
+    func dfuStateDidChange(to state: DFUState) {
         switch state {
         case .aborted:
-            //self.dfuActivityIndicator.stopAnimating()
-            //self.dfuUploadProgressView.setProgress(0, animated: true)
-            //self.stopProcessButton.isEnabled = false
-            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
-            break
-        case .signatureMismatch:
-            //self.dfuActivityIndicator.stopAnimating()
-            //self.dfuUploadProgressView.setProgress(0, animated: true)
-            //self.stopProcessButton.isEnabled = false
             nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
             break
         case .completed:
-            //self.dfuActivityIndicator.stopAnimating()
-            //self.dfuUploadProgressView.setProgress(0, animated: true)
-            //self.stopProcessButton.isEnabled = false
-            nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
+            nevoOtaView.setProgress(1, currentTask: 1, allTask: 1, progressString: NSLocalizedString("UpdateSuccess1", comment: ""))
+            self.nevoOtaView.upgradeSuccessful()
             break
         case .connecting:
-            //self.stopProcessButton.isEnabled = true
             break
         case .disconnecting:
-            //self.dfuUploadProgressView.setProgress(0, animated: true)
-            //self.dfuActivityIndicator.stopAnimating()
-            //self.stopProcessButton.isEnabled = false
             nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: nil)
             break
         case .enablingDfuMode:
-            //self.stopProcessButton.isEnabled = true
             break
         case .starting:
-            //self.stopProcessButton.isEnabled = true
             break
         case .uploading:
-            //self.stopProcessButton.isEnabled = true
             break
         case .validating:
-            //self.stopProcessButton.isEnabled = true
-            break
-        case .operationNotPermitted:
-            //self.stopProcessButton.isEnabled = true
-            break
-        case .failed:
-            //self.stopProcessButton.isEnabled = true
             break
         }
-        
-        //self.dfuStatusLabel.text = state.description()
         logWith(LogLevel.info, message: "Changed state to: \(state.description())")
     }
     
-    func didErrorOccur(_ error: DFUError, withMessage message: String) {
-        //self.dfuStatusLabel.text = "Error: \(message)"
-        //self.dfuActivityIndicator.stopAnimating()
-        //self.dfuUploadProgressView.setProgress(0, animated: true)
+    func dfuError(_ error: DFUError, didOccurWithMessage message: String) {
         nevoOtaView.setProgress(0, currentTask: 1, allTask: 1, progressString: message)
         logWith(LogLevel.error, message: message)
     }
@@ -182,10 +126,9 @@ extension OldOtaViewController:DFUServiceDelegate {
 
 //MARK: - DFUProgressDelegate
 extension OldOtaViewController:DFUProgressDelegate{
-    func onUploadProgress(_ part: Int, totalParts: Int, progress: Int, currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
-        //self.dfuUploadProgressView.setProgress(Float(progress)/100.0, animated: true)
-        //self.dfuUploadStatus.text = "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)"
-        nevoOtaView.setProgress(Float(progress/100), currentTask: 1, allTask: 1, progressString: "Speed : \(String(format:"%.1f", avgSpeedBytesPerSecond/1024)) Kbps, pt. \(part)/\(totalParts)")
+    func dfuProgressDidChange(for part: Int, outOf totalParts: Int, to progress: Int,
+                              currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
+        nevoOtaView.setProgress(Float(progress) / 100.0, currentTask: 1, allTask: 1, progressString: "Updating :\(part)/\(totalParts)")
     }
 }
 
@@ -203,7 +146,7 @@ extension OldOtaViewController {
         let updateTitle:String = NSLocalizedString("do_not_exit_this_screen", comment: "")
         let updatemsg:String = NSLocalizedString("please_follow_the_update_has_been_finished", comment: "")
         
-        let alertView :UIAlertController = UIAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
+        let alertView :MEDAlertController = MEDAlertController(title: updateTitle, message: updatemsg, preferredStyle: UIAlertControllerStyle.alert)
         alertView.view.tintColor = AppTheme.NEVO_SOLAR_YELLOW()
         let alertAction:UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel) { (action:UIAlertAction) -> Void in
             self.dismiss(animated: true, completion: nil)
@@ -222,11 +165,15 @@ extension OldOtaViewController {
     }
     
     func getBundledFirmwareURLHelper() -> URL {
-        if self.secureDFU! {
-            return Bundle.main.url(forResource: "lunar_20161011_v3", withExtension: "zip")!
-        }else{
-            return Bundle.main.url(forResource: "lunar_20161011_v3", withExtension: "zip")!
+        let fileArray:NSArray = AppTheme.GET_FIRMWARE_FILES("Firmwares")
+        for tmpfile in fileArray {
+            let selectedFile:URL = tmpfile as! URL
+            let fileExtension:String? = selectedFile.pathExtension
+            if fileExtension == "hex"{
+                return selectedFile
+            }
         }
+        return URL(string: "")!
     }
     
     func setCentralManager(centralManager aCentralManager : CBCentralManager){
@@ -245,21 +192,19 @@ extension OldOtaViewController {
         }
         
         selectedFileURL  = self.getBundledFirmwareURLHelper()
-        selectedFirmware = DFUFirmware(urlToZipFile: selectedFileURL!)
+        selectedFirmware = DFUFirmware(urlToBinOrHexFile: selectedFileURL!, urlToDatFile: nil, type: DFUFirmwareType.application)
         
         let dfuInitiator = DFUServiceInitiator(centralManager: centralManager!, target: dfuPeripheral!)
-        _ = dfuInitiator.withFirmwareFile(selectedFirmware!)
         dfuInitiator.delegate = self
         dfuInitiator.progressDelegate = self
         dfuInitiator.logger = self
-        dfuController = dfuInitiator.start()
+        dfuController = dfuInitiator.with(firmware: selectedFirmware!).start()
     }
 }
 
 //MARK: - SelectPeripheralDelegate
 extension OldOtaViewController:SelectPeripheralDelegate {
     func onDidSelectPeripheral(_ dFUMode:Bool,_ peripheral:CBPeripheral, _ manager:CBCentralManager){
-        popupView?.dismiss()
         self.secureDFUMode(dFUMode)
         self.setTargetPeripheral(aPeripheral: peripheral)
         self.setCentralManager(centralManager: manager)
