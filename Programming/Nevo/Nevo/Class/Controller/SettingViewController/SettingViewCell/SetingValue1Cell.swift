@@ -10,6 +10,7 @@ import UIKit
 import MSCellAccessory
 
 enum SetingType {
+    case userInfo
     case myNevo
     case notifications
     case linkLoss
@@ -37,7 +38,6 @@ class SetingValue1Cell: UITableViewCell {
         textLabel?.textColor = UIColor.black
         textLabel!.backgroundColor = UIColor.clear
         accessoryType = .disclosureIndicator
-        viewDefaultColorful()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -79,7 +79,7 @@ class SetingValue1Cell: UITableViewCell {
                 accessoryType = .none
                 isUserInteractionEnabled = true
                 accessoryView = MSCellAccessory.init(type: FLAT_DETAIL_BUTTON , color: UIColor.baseColor)
-                accessoryView?.addGestureRecognizer(UITapGestureRecognizer(target: viewController(), action: #selector((viewController() as! SettingViewController).showUpdateNevoAlertView)))
+                accessoryView?.addGestureRecognizer(UITapGestureRecognizer(target: viewController(), action: #selector((viewController() as? SettingViewController)?.showUpdateNevoAlertView)))
                 selectionStyle = .none
             }
         }

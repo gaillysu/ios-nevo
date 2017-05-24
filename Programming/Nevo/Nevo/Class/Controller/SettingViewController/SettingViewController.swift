@@ -10,25 +10,18 @@ import UIKit
 import BRYXBanner
 import SwiftEventBus
 import XCGLogger
+#if !RX_NO_MODULE
+    import RxSwift
+    import RxCocoa
+    import RxDataSources
+#endif
 
 class SettingViewController: UITableViewController {
-    
-    fileprivate var mNotificationType:NotificationType = NotificationType.call
-    fileprivate let watchSettingsArray:[(cellName:String,imageName:String,setingType:SetingType)] = [
-        (NSLocalizedString("My Nevo", comment: ""),"icon_nevo", SetingType.myNevo),
-        (NSLocalizedString("Notifications", comment: ""),"icon_bell", SetingType.notifications),
-        (NSLocalizedString("Scan Duration", comment: ""), "icon_bluetooth", SetingType.scanDuration),
-        (NSLocalizedString("Link-Loss Notifications", comment: ""),"icon_chain", SetingType.linkLoss),
-        (NSLocalizedString("find_my_watch", comment: ""),"icon_crosshair", SetingType.findWatch)]
-    fileprivate let appSettingsArray:[(cellName:String,imageName:String,setingType:SetingType)] = [
-        (NSLocalizedString("goals", comment: ""), "icon_goals", SetingType.goal),
-        (NSLocalizedString("unit", comment: ""), "icon_scale", SetingType.unit)]
-    fileprivate let otherSettingsArray:[(cellName:String,imageName:String,setingType:SetingType)] = [(NSLocalizedString("Support", comment: ""),"icon_support", SetingType.support)]
-    var selectedB:Bool = false
     //vibrate and show all color light to find my device, only send one request in 6 sec
     //this action take lot power and we maybe told customer less to use it
     var mFindMydeviceDatetime:Date = Date(timeIntervalSinceNow: -6)
     
+    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +34,69 @@ class SettingViewController: UITableViewController {
         tableView.register(UINib(nibName:"LinkLossNotificationsCell" ,bundle: nil), forCellReuseIdentifier: "LinkLossNotifications_Identifier")
         tableView.register(UINib(nibName:"SetingValue1Cell" ,bundle: nil), forCellReuseIdentifier: "SetingValue1_Identifier")
         tableView.register(UINib(nibName:"SetingDefaultCell" ,bundle: nil), forCellReuseIdentifier: "SetingDefault_Identifier")
+        
+        let dataSource = RxTableViewSectionedReloadDataSource<SettingSectionModel>()
+        
+        let items = Variable([
+            SettingSectionModel(header:"User info",footer:"",items:[
+                SettingSectionModelItem(label: "User", type: SetingType.userInfo, name:"usericon")]),
+            SettingSectionModel(header:"Watch Settings",footer:"",items:[
+                SettingSectionModelItem(label: NSLocalizedString("My Nevo", comment: ""), type: SetingType.myNevo, name:"icon_nevo"),
+                SettingSectionModelItem(label: NSLocalizedString("Notifications", comment: ""), type: SetingType.notifications, name:"icon_bell"),
+                SettingSectionModelItem(label: NSLocalizedString("Scan Duration", comment: ""), type: SetingType.scanDuration, name:"icon_bluetooth"),
+                SettingSectionModelItem(label: NSLocalizedString("Link-Loss Notifications", comment: ""), type: SetingType.linkLoss, name:"icon_chain"),
+                SettingSectionModelItem(label: NSLocalizedString("find_my_watch", comment: ""), type: SetingType.findWatch, name:"icon_crosshair")
+                ]),
+            SettingSectionModel(header:"App Settings",footer:"",items:[
+                SettingSectionModelItem(label: NSLocalizedString("goals", comment: ""), type: SetingType.goal, name:"icon_goals"),
+                SettingSectionModelItem(label: NSLocalizedString("unit", comment: ""), type: SetingType.unit, name:"icon_scale")
+                ]),
+            SettingSectionModel(header:"Other Settings",footer:"",items:[
+                SettingSectionModelItem(label: NSLocalizedString("Support", comment: ""), type: SetingType.support, name:"icon_support")
+                ])
+            ])
+        
+        dataSource.configureCell = { (_ , tv, indexPath, element) in
+            if element.type == .userInfo {
+                let users = MEDUserProfile.getAll()
+                if users.count>0 {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "SetingInfoIdentifier", for: indexPath)
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
+                    let users = MEDUserProfile.getAll()
+                    let userprofile:MEDUserProfile = users[0] as! MEDUserProfile
+                    (cell as! SetingInfoCell).emailLabel.text = userprofile.email
+                    (cell as! SetingInfoCell).userName.text = "\(userprofile.first_name) \(userprofile.last_name)"
+                    if let image = ProfileImageManager.shared.getImage() {
+                        (cell as! SetingInfoCell).avatarImageView.image = image
+                    }
+                    cell.viewDefaultColorful()
+                    return cell
+                }else{
+                    let cell = tv.dequeueReusableCell(withIdentifier: "SetingNotLoginIdentifier", for: indexPath)
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
+                    cell.viewDefaultColorful()
+                    return cell
+                }
+            }else if element.type == .linkLoss {
+                let cell:LinkLossNotificationsCell = tv.dequeueReusableCell(withIdentifier: "LinkLossNotifications_Identifier", for: indexPath) as! LinkLossNotificationsCell
+                cell.model = (element.label,element.iconName,element.type)
+                return cell
+            }else {
+                let valueCell:SetingValue1Cell = tv.dequeueReusableCell(withIdentifier: "SetingValue1_Identifier", for: indexPath) as! SetingValue1Cell
+                valueCell.model = (element.label,element.iconName,element.type)
+                
+                return valueCell
+            }
+        }
+        
+        dataSource.setSections(items.value)
+        
+        items.asObservable().bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        
+        tableView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+        
         
         _ = SwiftEventBus.onMainThread(self, name: EVENT_BUS_CONNECTION_STATE_CHANGED_KEY) { (notification) in
             self.checkConnection()
@@ -89,7 +145,7 @@ class SettingViewController: UITableViewController {
                     break
                 }else{
                     let activity:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-                    activity.center = CGPoint(x: UIScreen.main.bounds.size.width-10, y: cellView.contentView.frame.size.height/2.0)
+                    activity.center = CGPoint(x: UIScreen.main.bounds.size.width-25, y: cellView.contentView.frame.size.height/2.0)
                     cellView.contentView.addSubview(activity)
                     if(!activity.isAnimating){
                         activity.startAnimating();
@@ -237,75 +293,6 @@ extension SettingViewController {
         }
     }
     
-    // MARK: - UITableViewDataSource
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        switch (section){
-        case 0:
-            return 1
-        case 1:
-            return watchSettingsArray.count
-        case 2:
-            return appSettingsArray.count
-        case 3:
-            return otherSettingsArray.count
-        default:
-            return 0
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch (indexPath.section){
-        case 0:
-            let users = MEDUserProfile.getAll()
-            if users.count>0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SetingInfoIdentifier", for: indexPath)
-                cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
-                let users = MEDUserProfile.getAll()
-                let userprofile:MEDUserProfile = users[0] as! MEDUserProfile
-                (cell as! SetingInfoCell).emailLabel.text = userprofile.email
-                (cell as! SetingInfoCell).userName.text = "\(userprofile.first_name) \(userprofile.last_name)"
-                if let image = ProfileImageManager.shared.getImage() {
-                    (cell as! SetingInfoCell).avatarImageView.image = image
-                }
-                cell.viewDefaultColorful()
-                return cell
-            }else{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SetingNotLoginIdentifier", for: indexPath)
-                cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
-                cell.viewDefaultColorful()
-                return cell
-            }
-            
-        case 1:
-            let setting = watchSettingsArray[indexPath.row]
-            if(indexPath.row == 3){
-                let cell:LinkLossNotificationsCell = tableView.dequeueReusableCell(withIdentifier: "LinkLossNotifications_Identifier", for: indexPath) as! LinkLossNotificationsCell
-                cell.model = setting
-                return cell
-            }
-            
-            let valueCell:SetingValue1Cell = tableView.dequeueReusableCell(withIdentifier: "SetingValue1_Identifier", for: indexPath) as! SetingValue1Cell
-            valueCell.model = setting
-            
-            return valueCell
-        case 2:
-            let valueCell:SetingValue1Cell = tableView.dequeueReusableCell(withIdentifier: "SetingValue1_Identifier", for: indexPath) as! SetingValue1Cell
-            valueCell.model = appSettingsArray[indexPath.row]
-            return valueCell
-        case 3:
-            let valueCell:SetingValue1Cell = tableView.dequeueReusableCell(withIdentifier: "SetingValue1_Identifier", for: indexPath) as! SetingValue1Cell
-            valueCell.model = otherSettingsArray[indexPath.row]
-            return valueCell
-        default:
-            let valueCell:SetingValue1Cell = tableView.dequeueReusableCell(withIdentifier: "SetingValue1_Identifier", for: indexPath) as! SetingValue1Cell
-            valueCell.model = otherSettingsArray[indexPath.row]
-            return valueCell
-        }
-    }
 }
 
 extension SettingViewController:UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {

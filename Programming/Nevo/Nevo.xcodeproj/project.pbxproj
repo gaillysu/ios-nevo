@@ -206,11 +206,13 @@
 		6190A1661ED41F2900584FFA /* SetingValue1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A1571ED41F2900584FFA /* SetingValue1Cell.swift */; };
 		6190A1671ED41F2900584FFA /* SetingValue1Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190A1581ED41F2900584FFA /* SetingValue1Cell.xib */; };
 		6190A1681ED41F2900584FFA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A15B1ED41F2900584FFA /* SettingViewController.swift */; };
-		6190A1691ED41F2900584FFA /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190A15C1ED41F2900584FFA /* SettingViewController.xib */; };
 		6190A1741ED4203D00584FFA /* UserGoalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A16E1ED4203D00584FFA /* UserGoalController.swift */; };
 		6190A1751ED4203D00584FFA /* UserGoalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190A16F1ED4203D00584FFA /* UserGoalController.xib */; };
 		6190A1761ED4203D00584FFA /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A1711ED4203D00584FFA /* GoalTableViewCell.swift */; };
 		6190A1771ED4203D00584FFA /* GoalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190A1721ED4203D00584FFA /* GoalTableViewCell.xib */; };
+		6190A18B1ED5194100584FFA /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6190A18A1ED5194100584FFA /* SettingViewController.xib */; };
+		6190A18E1ED51A8F00584FFA /* SettingSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A18D1ED51A8F00584FFA /* SettingSectionModel.swift */; };
+		6190A1901ED51AF600584FFA /* SettingSectionModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A18F1ED51AF600584FFA /* SettingSectionModelItem.swift */; };
 		61A4DD841ECD759700C30523 /* forgetDevice.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A4DD831ECD759700C30523 /* forgetDevice.png */; };
 		61CEC5BD1E2C5A2E001E5567 /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */; };
 		61CEC5BE1E2C5A2E001E5567 /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */; };
@@ -613,7 +615,6 @@
 		6190A1571ED41F2900584FFA /* SetingValue1Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingValue1Cell.swift; sourceTree = "<group>"; };
 		6190A1581ED41F2900584FFA /* SetingValue1Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetingValue1Cell.xib; sourceTree = "<group>"; };
 		6190A15B1ED41F2900584FFA /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = Nevo/Class/Controller/SettingViewController/SettingViewController.swift; sourceTree = SOURCE_ROOT; };
-		6190A15C1ED41F2900584FFA /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Nevo/Class/Controller/SettingViewController/SettingViewController.xib; sourceTree = SOURCE_ROOT; };
 		6190A16A1ED41F7F00584FFA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SetingNotLoginCell.strings; sourceTree = "<group>"; };
 		6190A16B1ED41F8100584FFA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SetingNotLoginCell.strings"; sourceTree = "<group>"; };
 		6190A16C1ED41F8300584FFA /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SetingNotLoginCell.strings"; sourceTree = "<group>"; };
@@ -621,6 +622,9 @@
 		6190A16F1ED4203D00584FFA /* UserGoalController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserGoalController.xib; sourceTree = "<group>"; };
 		6190A1711ED4203D00584FFA /* GoalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		6190A1721ED4203D00584FFA /* GoalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalTableViewCell.xib; sourceTree = "<group>"; };
+		6190A18A1ED5194100584FFA /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Nevo/Class/Controller/SettingViewController/SettingViewController.xib; sourceTree = SOURCE_ROOT; };
+		6190A18D1ED51A8F00584FFA /* SettingSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSectionModel.swift; sourceTree = "<group>"; };
+		6190A18F1ED51AF600584FFA /* SettingSectionModelItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSectionModelItem.swift; sourceTree = "<group>"; };
 		61A4DD831ECD759700C30523 /* forgetDevice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forgetDevice.png; sourceTree = "<group>"; };
 		61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldOtaViewController.swift; sourceTree = "<group>"; };
 		61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OldOtaViewController.xib; sourceTree = "<group>"; };
@@ -859,6 +863,7 @@
 		0050D5141C28E0DB004F6F80 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				6190A18C1ED51A5A00584FFA /* ViewModel */,
 				61F321B01ECADB1900116F35 /* BTManager */,
 				0050D5151C28E0DB004F6F80 /* Controller */,
 			);
@@ -975,7 +980,7 @@
 			children = (
 				6190A1491ED41F2900584FFA /* SettingViewCell */,
 				6190A15B1ED41F2900584FFA /* SettingViewController.swift */,
-				6190A15C1ED41F2900584FFA /* SettingViewController.xib */,
+				6190A18A1ED5194100584FFA /* SettingViewController.xib */,
 			);
 			name = SettingViewController;
 			path = SetingViewController;
@@ -1428,6 +1433,15 @@
 				6190A1721ED4203D00584FFA /* GoalTableViewCell.xib */,
 			);
 			path = UserGoalView;
+			sourceTree = "<group>";
+		};
+		6190A18C1ED51A5A00584FFA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6190A18D1ED51A8F00584FFA /* SettingSectionModel.swift */,
+				6190A18F1ED51AF600584FFA /* SettingSectionModelItem.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		61CEC5B81E2C5A2E001E5567 /* AidOTA */ = {
@@ -2202,12 +2216,12 @@
 				664AE3331DF7C09C005CD385 /* NotiColorEditableCell.xib in Resources */,
 				0036EB0A1C48BA8300DCED46 /* tutorialone.png in Resources */,
 				00EC9DFB1C85838900280904 /* TutorialFiveViewController.xib in Resources */,
+				6190A18B1ED5194100584FFA /* SettingViewController.xib in Resources */,
 				00EC9DDA1C85834F00280904 /* TutorialTwoViewController.xib in Resources */,
 				0063BC351D98D4EC000BAB44 /* InformationController.xib in Resources */,
 				6190A1621ED41F2900584FFA /* SetingDefaultCell.xib in Resources */,
 				61D280711ED2C010000C553F /* PageViewController.xib in Resources */,
 				00120E781D7550D500CE0C32 /* UserHeader.xib in Resources */,
-				6190A1691ED41F2900584FFA /* SettingViewController.xib in Resources */,
 				0050D69B1C2906D8004F6F80 /* Firmwares in Resources */,
 				00E650991C83DD9000278D3E /* nevoFontImage.png in Resources */,
 				612DB7181DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib in Resources */,
@@ -2387,6 +2401,7 @@
 				611D415C1DCAD97C003BC6E3 /* HourlySteps.swift in Sources */,
 				6650988E1DCB0E220059D5F7 /* MEDSleepNetworkManager.swift in Sources */,
 				611D415D1DCAD97C003BC6E3 /* RealTimeCountSteps.swift in Sources */,
+				6190A18E1ED51A8F00584FFA /* SettingSectionModel.swift in Sources */,
 				66687CD71DD9654100AD7F7D /* Dispatch+MEDExtension.swift in Sources */,
 				6190A1761ED4203D00584FFA /* GoalTableViewCell.swift in Sources */,
 				611D415E1DCAD97C003BC6E3 /* RunningToHK.swift in Sources */,
@@ -2426,6 +2441,7 @@
 				D1BE2B1D1E1D1AC100E6713D /* Int+Timepiece.swift in Sources */,
 				666793371E1350FC00344188 /* NevoCircleProgressView.swift in Sources */,
 				660C16D01DEC25DA00544F56 /* UIImage+MEDExtension.swift in Sources */,
+				6190A1901ED51AF600584FFA /* SettingSectionModelItem.swift in Sources */,
 				61F321E31ECADBBE00116F35 /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				D1BE2B1E1E1D1AC100E6713D /* NSCalendar+Timepiece.swift in Sources */,
 				61D2805F1ED286D2000C553F /* MEDUserGoal.swift in Sources */,
@@ -2981,7 +2997,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 337909E3A1733589971A3696 /* Pods-Nevo.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Nevo/Nevo.entitlements;
@@ -3015,7 +3030,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84E3C5A18963C1F2BFFF61CB /* Pods-Nevo.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Nevo/Nevo.entitlements;

@@ -11,7 +11,6 @@ import MRProgress
 import BRYXBanner
 import LTNavigationBar
 import UIColor_Hex_Swift
-import ActiveLabel
 import XCGLogger
 import SwiftyJSON
 import RealmSwift
