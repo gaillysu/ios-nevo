@@ -141,7 +141,10 @@ extension SelectedNotificationTypeController:AddPacketToWatchDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return colorArray.count
+        if section == 2 {
+            return colorArray.count
+        }
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
