@@ -9,6 +9,11 @@
 import UIKit
 import BRYXBanner
 import RealmSwift
+#if !RX_NO_MODULE
+    import RxSwift
+    import RxCocoa
+    import RxDataSources
+#endif
 
 class AlarmClockController: UITableViewController {
     fileprivate var selectedIndex: IndexPath?
@@ -21,6 +26,12 @@ class AlarmClockController: UITableViewController {
         let userDefaults = UserDefaults.standard
         return userDefaults.getFirmwareVersion() <= 31 && userDefaults.getSoftwareVersion() <= 18
     }
+    
+    fileprivate lazy var formatter: DateFormatter = {
+        let format = DateFormatter()
+        format.dateFormat = "HH:mm a"
+        return format
+    }()
     
     fileprivate lazy var rightBarButton: UIBarButtonItem = {
         let rightItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addAlarmAction(_ :)))
@@ -35,6 +46,12 @@ class AlarmClockController: UITableViewController {
     fileprivate lazy var leftDoneItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(alarmEditAction(_:)))
     }()
+    
+    var alarmItems = Variable([
+        AlarmSectionModel(header:"Wake Alarm",items:[AlarmSectionModelItem(timer: "", title: "", describing: "", state: false)]),
+        AlarmSectionModel(header:"Sleep Alarm",items:[AlarmSectionModelItem(timer: "", title: "", describing: "", state: false)])])
+    
+    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +72,46 @@ class AlarmClockController: UITableViewController {
         ConnectionManager.manager.startConnect(false)
         
         tableView.register(UINib(nibName: "AlarmClockVCell",bundle:nil), forCellReuseIdentifier: "alarmCell")
+        
+        let dataSource = RxTableViewSectionedReloadDataSource<AlarmSectionModel>()
+        
+        dataSource.configureCell = { (_, tv, indexPath, element: AlarmSectionModelItem) in
+            let cell = tv.dequeueReusableCell(withIdentifier: "alarmCell", for: indexPath) as! AlarmClockVCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            if self.isEditingFlag {
+                cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            }else{
+                cell.accessoryType = UITableViewCellAccessoryType.none
+            }
+            cell.alarmItem = element
+            
+            cell.actionCallBack = {
+                (sender) -> Void in
+                let segment = sender as! UISwitch
+                
+                var alarmArray = self.improviseArray(section: indexPath.section)
+                
+                self.updateNewAlarmData(alarmArray: &alarmArray, mSwitch: segment)
+            }
+            
+            return cell
+        }
+        
+        dataSource.titleForHeaderInSection = { dataSource, sectionIndex in
+            return dataSource[sectionIndex].header
+        }
+        
+        dataSource.canEditRowAtIndexPath = { (ds, ip) in
+            return true
+        }
+        
+        dataSource.setSections(alarmItems.value)
+        
+        alarmItems.asObservable().bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        
+        tableView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -116,6 +173,7 @@ extension AlarmClockController {
 
 // MARK: - Initialize data
 extension AlarmClockController {
+    
     func initializeAlarmData() {
         let array = MEDUserAlarm.getAll()
         allAlarmArray.removeAll()
@@ -132,6 +190,58 @@ extension AlarmClockController {
         
         wakeArray = allAlarmArray.filter({$0.type == 0})
         sleepArray = allAlarmArray.filter({$0.type == 1})
+        
+        let wakeAlarmItem = getAlarmInfo(wakeArray)
+        let sleepAlarmItem = getAlarmInfo(sleepArray)
+        
+        alarmItems = Variable([
+            AlarmSectionModel(header:"Wake Alarm",items:wakeAlarmItem),
+            AlarmSectionModel(header:"Sleep Alarm",items:sleepAlarmItem)])
+    }
+    
+    func getAlarmInfo(_ value:[MEDUserAlarm])-> [AlarmSectionModelItem] {
+        var alarmWakeItem:[AlarmSectionModelItem] = []
+        for alarmValue in value {
+            let alarmDate = Date(timeIntervalSince1970: alarmValue.timer)
+            
+            let timerString:String = formatter.string(from: alarmDate)
+            let alarmState:Bool = alarmValue.status
+            var describing:String = ""
+            var titleString:String = alarmValue.label
+            
+            if titleString.characters.count == 0 {
+                titleString = NSLocalizedString("alarmTitle", comment: "")
+            }
+            
+            let dayArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+            
+            
+            
+            if alarmValue.status {
+                describing = NSLocalizedString("alarm_disabled", comment: "")
+            }else{
+                
+                if !(alarmValue.alarmWeek == 0) {
+                    if Date().weekday != alarmValue.alarmWeek{
+                        describing = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmValue.alarmWeek - 1], comment: "")
+                    }else{
+                        let nowDate = Date.date(year: Date().year, month: Date().month, day: Date().day, hour: alarmDate.hour, minute: alarmDate.minute, second: 0)
+                        if nowDate.timeIntervalSince1970 < Date().timeIntervalSince1970 {
+                            describing = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmValue.alarmWeek - 1], comment: "")
+                        } else {
+                            let nowHour:Int = abs(alarmDate.hour-Date().hour)
+                            let nowMinute:Int = abs(alarmDate.minute-Date().minute)
+                            describing = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(nowMinute)m"
+                        }
+                    }
+                } else {
+                    describing = "Alarm is available"
+                }
+            }
+            
+            alarmWakeItem.append(AlarmSectionModelItem(timer: timerString, title: titleString, describing: describing, state: alarmState))
+        }
+        return alarmWakeItem
     }
 }
 
@@ -203,23 +313,6 @@ extension AlarmClockController {
 // MARK: - UITableView DataSource
 extension AlarmClockController {
     
-    override func numberOfSections(in tableView: UITableView) -> Int{
-        tableView.backgroundView = nil
-        
-        if wakeArray.count > 0 && sleepArray.count > 0 {
-            return 2
-        } else if wakeArray.count > 0 || sleepArray.count > 0 {
-            return 1
-        } else {
-            tableView.backgroundView = NoneAlarmView.factory()
-            return 0
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return improviseArray(section: section).count
-    }
-    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
         let headerLabel = LineLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 30))
         let titleArray: [String] = ["Sleep Alarm","Wake Alarm"]
@@ -241,67 +334,6 @@ extension AlarmClockController {
         return headerLabel
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell", for: indexPath) as! AlarmClockVCell
-        
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        
-        if isEditingFlag {
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-        }else{
-            cell.accessoryType = UITableViewCellAccessoryType.none
-        }
-        
-        let alarmModel = improviseArray(section: indexPath.section)[indexPath.row]
-        
-        cell.alarmSwicth.isOn = alarmModel.status
-        cell.alarmSwicth.tag = indexPath.row
-        
-        let dayArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-        let alarmDate = Date(timeIntervalSince1970: alarmModel.timer)
-        
-        if !alarmModel.status {
-            cell.alarmInLabel.text = NSLocalizedString("alarm_disabled", comment: "")
-        }else{
-            print("alarmModel.alarmWeek:\(alarmModel.alarmWeek)")
-            
-            if !(alarmModel.alarmWeek == 0) {
-                if Date().weekday != alarmModel.alarmWeek{
-                    cell.alarmInLabel.text = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmModel.alarmWeek - 1], comment: "")
-                }else{
-                    let nowDate = Date.date(year: Date().year, month: Date().month, day: Date().day, hour: alarmDate.hour, minute: alarmDate.minute, second: 0)
-                    if nowDate.timeIntervalSince1970 < Date().timeIntervalSince1970 {
-                        cell.alarmInLabel.text = NSLocalizedString("alarm_on", comment: "") + NSLocalizedString(dayArray[alarmModel.alarmWeek - 1], comment: "")
-                    } else {
-                        let nowHour:Int = abs(alarmDate.hour-Date().hour)
-                        let nowMinute:Int = abs(alarmDate.minute-Date().minute)
-                        cell.alarmInLabel.text = NSLocalizedString("alarm_in", comment: "")+"\(nowHour)h \(nowMinute)m"
-                    }
-                }
-            } else {
-                cell.alarmInLabel.text = "Alarm is available"
-            }
-        }
-        
-        cell.dateLabel.text = alarmDate.stringFromFormat("HH:mm a")
-        cell.titleLabel.text = alarmModel.label
-        
-        if alarmModel.label.characters.count == 0 {
-            cell.titleLabel.text = NSLocalizedString("alarmTitle", comment: "")
-        }
-        
-        cell.actionCallBack = {
-            (sender) -> Void in
-            let segment = sender as! UISwitch
-            
-            var alarmArray = self.improviseArray(section: indexPath.section)
-            
-            self.updateNewAlarmData(alarmArray: &alarmArray, mSwitch: segment)
-        }
-        
-        return cell
-    }
 }
 
 // MARK: - Tableview Delegate

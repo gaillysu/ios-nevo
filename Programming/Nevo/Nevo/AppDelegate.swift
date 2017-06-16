@@ -56,12 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - 调整 App 的启动逻辑
 extension AppDelegate {
     func appGlobalConfig() {
-        UINavigationBar.appearance().tintColor = UIColor.baseColor
         UITabBar.appearance().isTranslucent = true
         UITabBar.appearance().backgroundColor = UIColor.getBarColor()
         UITabBar.appearance().tintColor = UIColor.baseColor
-        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
         //set navigationBar font style and font color
+        UINavigationBar.appearance().tintColor = UIColor.baseColor
+        UINavigationBar.appearance().lt_setBackgroundColor(UIColor.getBarColor())
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:UIFont(name: "Raleway", size: 20)!]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
@@ -85,15 +85,6 @@ extension AppDelegate {
                 initTabBarControl()
             }
         }
-        
-        /// Alter the entry of app here when testing a single module.
-        /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
-        #if DEBUG
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-            self.window?.makeKeyAndVisible()
-        #endif
-        /// 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
     }
     
     func initTabBarControl() {

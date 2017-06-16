@@ -176,7 +176,6 @@
 		611D42671DCAD97D003BC6E3 /* Nevo.entitlements in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */; };
 		611D42681DCAD97D003BC6E3 /* Nevo-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */; };
 		611D42691DCAD97D003BC6E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00321D6C1C98EBB10069BFCC /* AppDelegate.swift */; };
-		611D426B1DCAD97D003BC6E3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A62211D6A9F1500458305 /* MainTabBarController.swift */; };
 		612DB7171DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612DB7151DEFC7BE000B1747 /* AllowNotificationsTableViewCell.swift */; };
 		612DB7181DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 612DB7161DEFC7BE000B1747 /* AllowNotificationsTableViewCell.xib */; };
 		612ECA341ECEC50800657D97 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612ECA331ECEC50800657D97 /* ConnectionManager.swift */; };
@@ -215,6 +214,8 @@
 		6190A1951ED56C8500584FFA /* SettingSectionModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A1931ED56C8500584FFA /* SettingSectionModelItem.swift */; };
 		6190A1981ED5707900584FFA /* StepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A1971ED5707900584FFA /* StepsModel.swift */; };
 		6190A19A1ED570A200584FFA /* StepsModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A1991ED570A100584FFA /* StepsModelItem.swift */; };
+		6190A19D1ED575EC00584FFA /* AlarmSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A19C1ED575EC00584FFA /* AlarmSectionModel.swift */; };
+		6190A19F1ED575FB00584FFA /* AlarmSectionModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A19E1ED575FB00584FFA /* AlarmSectionModelItem.swift */; };
 		61A4DD841ECD759700C30523 /* forgetDevice.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A4DD831ECD759700C30523 /* forgetDevice.png */; };
 		61CEC5BD1E2C5A2E001E5567 /* OldOtaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */; };
 		61CEC5BE1E2C5A2E001E5567 /* OldOtaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */; };
@@ -499,7 +500,6 @@
 		0063BCA91D991926000BAB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TutorialSixViewController.strings; sourceTree = "<group>"; };
 		0063BCAA1D99192E000BAB44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TutorialSevenViewController.xib; sourceTree = "<group>"; };
 		0063BCAB1D991933000BAB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TutorialSevenViewController.strings; sourceTree = "<group>"; };
-		006A62211D6A9F1500458305 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		006A62341D6AA5F200458305 /* SleepHistoricalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepHistoricalViewController.swift; sourceTree = "<group>"; };
 		006A62481D6AA62100458305 /* SolarIndicatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarIndicatorController.swift; sourceTree = "<group>"; };
 		006A624A1D6AA62100458305 /* SolarInforViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarInforViewCell.swift; sourceTree = "<group>"; };
@@ -629,6 +629,8 @@
 		6190A1931ED56C8500584FFA /* SettingSectionModelItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSectionModelItem.swift; sourceTree = "<group>"; };
 		6190A1971ED5707900584FFA /* StepsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsModel.swift; sourceTree = "<group>"; };
 		6190A1991ED570A100584FFA /* StepsModelItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsModelItem.swift; sourceTree = "<group>"; };
+		6190A19C1ED575EC00584FFA /* AlarmSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmSectionModel.swift; sourceTree = "<group>"; };
+		6190A19E1ED575FB00584FFA /* AlarmSectionModelItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmSectionModelItem.swift; sourceTree = "<group>"; };
 		61A4DD831ECD759700C30523 /* forgetDevice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forgetDevice.png; sourceTree = "<group>"; };
 		61CEC5B91E2C5A2E001E5567 /* OldOtaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldOtaViewController.swift; sourceTree = "<group>"; };
 		61CEC5BA1E2C5A2E001E5567 /* OldOtaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OldOtaViewController.xib; sourceTree = "<group>"; };
@@ -1442,6 +1444,7 @@
 		6190A18C1ED51A5A00584FFA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6190A19B1ED575D700584FFA /* AlarmViewModel */,
 				6190A1961ED5706600584FFA /* StepsViewModel */,
 				6190A1911ED56C8500584FFA /* SettingViewModel */,
 			);
@@ -1464,6 +1467,15 @@
 				6190A1991ED570A100584FFA /* StepsModelItem.swift */,
 			);
 			path = StepsViewModel;
+			sourceTree = "<group>";
+		};
+		6190A19B1ED575D700584FFA /* AlarmViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6190A19C1ED575EC00584FFA /* AlarmSectionModel.swift */,
+				6190A19E1ED575FB00584FFA /* AlarmSectionModelItem.swift */,
+			);
+			path = AlarmViewModel;
 			sourceTree = "<group>";
 		};
 		61CEC5B81E2C5A2E001E5567 /* AidOTA */ = {
@@ -1899,7 +1911,6 @@
 				9A2D6C391A9C6D9F00591BDC /* Nevo.entitlements */,
 				006B83691C44A20000E20A0C /* Nevo-Bridging-Header.h */,
 				00321D6C1C98EBB10069BFCC /* AppDelegate.swift */,
-				006A62211D6A9F1500458305 /* MainTabBarController.swift */,
 				9AD8F9411A6DF35900F01014 /* Images.xcassets */,
 				9AD8F9391A6DF35900F01014 /* Nevo.xcdatamodeld */,
 				9AD8F9351A6DF35900F01014 /* Supporting Files */,
@@ -2384,6 +2395,7 @@
 				666793091E134DAF00344188 /* M13CheckboxStrokeManager.swift in Sources */,
 				616E67341E8BA0D600C1F269 /* SyncStepsCache.swift in Sources */,
 				61F322161ECAE00500116F35 /* Double+Extension.swift in Sources */,
+				6190A19D1ED575EC00584FFA /* AlarmSectionModel.swift in Sources */,
 				611D412E1DCAD97C003BC6E3 /* MEDLoginRequest.swift in Sources */,
 				611D412F1DCAD97C003BC6E3 /* MEDRequestPasswordRequest.swift in Sources */,
 				61E8EC8A1E16017D004F0DBE /* EventBusKeys.swift in Sources */,
@@ -2466,6 +2478,7 @@
 				6190A1951ED56C8500584FFA /* SettingSectionModelItem.swift in Sources */,
 				61F321E31ECADBBE00116F35 /* DailyTrackerInfoNevoPacket.swift in Sources */,
 				D1BE2B1E1E1D1AC100E6713D /* NSCalendar+Timepiece.swift in Sources */,
+				6190A19F1ED575FB00584FFA /* AlarmSectionModelItem.swift in Sources */,
 				61D2805F1ED286D2000C553F /* MEDUserGoal.swift in Sources */,
 				666793071E134DAF00344188 /* M13CheckboxSpiralManager.swift in Sources */,
 				666793031E134DAF00344188 /* M13CheckboxFillManager.swift in Sources */,
@@ -2649,7 +2662,6 @@
 				61F321F51ECADBBE00116F35 /* SetGoalRequest.swift in Sources */,
 				611D42691DCAD97D003BC6E3 /* AppDelegate.swift in Sources */,
 				61D2805C1ED286D2000C553F /* MEDNotificationColor.swift in Sources */,
-				611D426B1DCAD97D003BC6E3 /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

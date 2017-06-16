@@ -17,6 +17,15 @@ class AlarmClockVCell: UITableViewCell {
     @IBOutlet weak var alarmSwicth: UISwitch!
     @IBOutlet weak var alarmInLabel: UILabel!
     
+    var alarmItem: AlarmSectionModelItem? {
+        didSet{
+            alarmInLabel.text = alarmItem?.describing
+            dateLabel.text = alarmItem?.alarmTimer
+            titleLabel.text = alarmItem?.alarmTile
+            alarmSwicth.isOn = (alarmItem?.status) == nil ? false:alarmItem!.status
+        }
+    }
+    
     var actionCallBack:((_ sender: Any) -> Void)?
     
     override func awakeFromNib() {
